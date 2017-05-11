@@ -22,79 +22,20 @@
 <body id="page-top" class="has-map">
 
 <div id="page-wrapper">
-    %{--<div class="collapse has-tabs" id="user-area">
-        <div class="container">
-            <div class="inner">
-                <a href="#" class="close" data-close-parent="#user-area"><asset:image src="close.png" alt=""/></a>
-                <div class="row">
-                    <div class="col-md-3 col-md-offset-9">
-                        <div role="tabpanel">
-                            <!-- Nav tabs -->
-                            <ul class="nav nav-pills" role="tablist">
-                                <li role="presentation"><a href="#sign-in" aria-controls="sign-in" role="tab" data-toggle="tab" data-transition-parent="#sign-in">Đăng nhập</a></li>
-                                <li role="presentation"><a href="#register" aria-controls="register" role="tab" data-toggle="tab"  data-transition-parent="#register">Đăng kí</a></li>
-                            </ul>
-                            <!-- Tab panes -->
-                            <div class="tab-content">
-                                <div role="tabpanel" class="tab-pane" id="sign-in">
-                                    <form role="form" method="post" id="form-sign-in">
-                                        <div class="form-group animate move_from_bottom_short">
-                                            <input type="text" class="form-control" id="sing-in-name" name="name" placeholder="Tài khoản">
-                                        </div>
-                                        <!--end .form-group-->
-                                        <div class="form-group animate move_from_bottom_short">
-                                            <input type="email" class="form-control" id="sing-in-email" name="email" placeholder="Email">
-                                        </div>
-                                        <!--end .form-group-->
-                                        <div class="form-group animate move_from_bottom_short">
-                                            <button type="submit" class="btn btn-primary">Đăng nhập</button>
-                                        </div>
-                                        <!--end .form-group-->
-                                    </form>
-                                </div>
-                                <div role="tabpanel" class="tab-pane" id="register">
-                                    <form role="form" method="post" id="form-register">
-                                        <div class="form-group animate move_from_bottom_short">
-                                            <input type="text" class="form-control" id="name" name="name" placeholder="Name">
-                                        </div>
-                                        <!--end .form-group-->
-                                        <div class="form-group animate move_from_bottom_short">
-                                            <input type="email" class="form-control" id="email" name="email" placeholder="Email">
-                                        </div>
-                                        <!--end .form-group-->
-                                        <div class="form-group animate move_from_bottom_short">
-                                            <input type="password" class="form-control" id="password" name="password" placeholder="Password">
-                                        </div>
-                                        <!--end .form-group-->
-                                        <div class="form-group animate move_from_bottom_short">
-                                            <input type="password" class="form-control" id="confirm-password" name="confirm-password" placeholder="Confirm Password">
-                                        </div>
-                                        <!--end .form-group-->
-                                        <div class="form-group animate move_from_bottom_short">
-                                            <button type="submit" class="btn btn-primary">Register</button>
-                                        </div>
-                                        <!--end .form-group-->
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--end .col-md-3-->
-                </div>
-                <!--end .row-->
-            </div>
-            <!--end .container-->
-        </div>
-        <!--end .inner-->
-    </div>--}%
     <!--end User area-->
     <header class="animate" id="header">
         <div class="container">
             <div class="header-inner">
                 <nav class="secondary">
                     <ul>
-                        <li><a href="#user-area" class="promoted" data-toggle="collapse" aria-expanded="false" aria-controls="user-area" data-tab="#sign-in" data-transition-parent="#header">Đăng nhập</a></li>
-                        %{--<li><a href="#user-area"  data-toggle="collapse" aria-expanded="false" aria-controls="user-area" data-tab="#register" data-transition-parent="#header">Đăng kí</a></li>--}%
+                        <li>
+                            <sec:ifLoggedIn>
+
+                            </sec:ifLoggedIn>
+                            <sec:ifNotLoggedIn>
+                                <a href="${createLink(controller: 'login', action: 'auth')}" data-expand-width="col-8" data-transition-parent=".content-loader" data-external="true">Đăng nhập</a>
+                            </sec:ifNotLoggedIn>
+                        </li>
                     </ul>
                 </nav>
                 <!--end Secondary navigation-->

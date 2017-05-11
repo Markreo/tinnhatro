@@ -12,6 +12,10 @@ class HomeController {
 
     }
 
+    def login() {
+
+    }
+
     def getJsonFile() {
         render([
                 "data": [
