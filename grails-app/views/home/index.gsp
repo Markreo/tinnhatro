@@ -115,7 +115,7 @@
                             </ul>
                         </li>
                         <li><a href="assets/pages/about_e.html" data-expand-width="col-8" data-transition-parent=".content-loader" data-external="true">Chúng tôi</a></li>
-                        <li><a href="${createLink(controller: 'home', action: 'person')}" data-expand-width="col-6" data-transition-parent=".content-loader" data-external="true">Cho thuê</a></li>
+                        <li><a href="${createLink(controller: 'home', action: 'person')}" data-expand-width="col-6" data-transition-parent=".content-loader" data-external="true">Đăng tin</a></li>
                         <li><a href="assets/pages/faq_e.html" data-expand-width="col-6" data-transition-parent=".content-loader" data-external="true">FAQ</a></li>
                         <li><a href="assets/pages/contact_e.html" data-expand-width="col-6" data-transition-parent=".content-loader" data-external="true">Liên hệ</a></li>
                     </ul>
@@ -135,7 +135,9 @@
         <div class="container">
             <div class="submit-container">
                 <a id="search-collapse-btn" href="#search-collapse" class="btn btn-default btn-sm show-filter" data-toggle="collapse" aria-expanded="false" aria-controls="search-collapse">Bộ lọc</a>
-                <a href="${createLink(controller: 'post', action: 'create')}" class="submit-button" data-expand-width="col-8" data-transition-parent=".content-loader" data-external="true"><i><asset:image src="plus.png" alt=""/></i></a>
+                <sec:ifAnyGranted roles="ROLE_CHOTHUE">
+                    <a href="${createLink(controller: 'post', action: 'create')}" class="submit-button" data-expand-width="col-8" data-transition-parent=".content-loader" data-external="true"><i><asset:image src="plus.png" alt=""/></i></a>
+                </sec:ifAnyGranted>
             </div>
         </div>
 

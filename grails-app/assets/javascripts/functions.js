@@ -278,7 +278,8 @@ function averageColor(element){
         var saturatedColor;
         imagesLoaded( image, function(e) {
             averageColor = image.averageColorAsString();
-            saturatedColor = $.Color(averageColor).hsla(null, .04, 0.6, null);
+            //TODO: to edit color
+            saturatedColor = $.Color(averageColor).hsla(null, .4, 0.6, null);
             $(_this).find('.average-color').css('background-color', saturatedColor);
         });
     });
