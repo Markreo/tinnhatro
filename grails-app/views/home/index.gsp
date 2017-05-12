@@ -30,7 +30,7 @@
                     <ul>
                         <li>
                             <sec:ifLoggedIn>
-
+                                xin chào <tnt:userInfo field="name"/>!
                             </sec:ifLoggedIn>
                             <sec:ifNotLoggedIn>
                                 <a href="${createLink(controller: 'login', action: 'auth')}" data-expand-width="col-8" data-transition-parent=".content-loader" data-external="true">Đăng nhập</a>
@@ -76,7 +76,7 @@
         <div class="container">
             <div class="submit-container">
                 <a id="search-collapse-btn" href="#search-collapse" class="btn btn-default btn-sm show-filter" data-toggle="collapse" aria-expanded="false" aria-controls="search-collapse">Bộ lọc</a>
-                <sec:ifAnyGranted roles="ROLE_CHOTHUE">
+                <sec:ifAnyGranted roles="ROLE_CHOTHUE,ROLE_SYSADMIN">
                     <a href="${createLink(controller: 'post', action: 'create')}" class="submit-button" data-expand-width="col-8" data-transition-parent=".content-loader" data-external="true"><i><asset:image src="plus.png" alt=""/></i></a>
                 </sec:ifAnyGranted>
             </div>

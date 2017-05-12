@@ -16,7 +16,10 @@ class BootStrap {
             new Role(authority: 'ROLE_CANTHUE').save(flush: true)
             new Role(authority: 'ROLE_ADMIN').save(flush: true)
             def role = new Role(authority: 'ROLE_SYSADMIN').save(flush: true)
-            def admin = new User(username: 'admin', password: '123456', firstName: "System Admin").save(flush: true)
+            def admin = new User(username: 'admin', password: '123456', name: "System Admin", phone: '01676112012')
+            if(admin.hasErrors() || !admin.save(flush: true)) {
+                println admin.errors
+            }
             def roleAdmin = UserRole.findOrCreateWhere(user: admin, role: role)
             roleAdmin.save(flush: true)
         }

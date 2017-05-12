@@ -6,18 +6,18 @@
 	<div class="widget-body">
 		<div id="warring"></div>
 		<div id="horizontal-form">
-			<g:formRemote name="asv" url="[uri: '/j_spring_security_check']" class="form-horizontal" role="form" autocomplete="off" onSuccess="onFailure(data)">
+			<g:formRemote name="login" url="[uri: '/login/authenticate']" class="form-horizontal" role="form" autocomplete="off" onSuccess="onFailure(data)">
 				<div class="row">
 					<div class="col-md-12">
 						<label>Tài khoản đăng nhập</label>
-						<input type="text" class="form-control" placeholder="Username" name="j_username" autocomplete="off" />
+						<input type="text" class="form-control" placeholder="Username" name="username" autocomplete="off" />
 						<div class="horizontal-space"></div>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-md-12">
 						<label>Mật khẩu</label>
-						<input type="password" class="form-control" placeholder="Password" name="j_password" autocomplete="off"/>
+						<input type="password" class="form-control" placeholder="Password" name="password" autocomplete="off"/>
 						<div class="horizontal-space"></div>
 					</div>
 				</div>
