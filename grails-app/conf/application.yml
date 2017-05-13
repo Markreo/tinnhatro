@@ -76,6 +76,8 @@ grails:
                 scriptlets: html
                 taglib: none
                 staticparts: none
+    i18n:
+        encoding: UTF-8
 endpoints:
     jmx:
         unique-names: true

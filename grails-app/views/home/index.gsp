@@ -13,6 +13,7 @@
     <asset:link rel="stylesheet" href="owl.carousel.css" type="text/css"/>
     <asset:link rel="stylesheet" href="jquery.nouislider.min.css" type="text/css"/>
     <asset:link rel="stylesheet" href="style.css" type="text/css"/>
+    <asset:link rel="stylesheet" href="fileinput.css" type="text/css"/>
 
     <title>Tin nhà trọ</title>
     <asset:javascript  src="myjavascript.js" />
@@ -1192,6 +1193,7 @@
 <asset:javascript src="jquery.inview.min.js"/>
 <asset:javascript src="functions.js"/>
 <asset:javascript src="custom.js"/>
+<asset:javascript src="fileinput.js"/>
 
 <script>
 

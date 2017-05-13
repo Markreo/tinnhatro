@@ -1,7 +1,8 @@
 <div id="submit-page">
     <div class="inner">
         <h1 id="temp">Đăng tin</h1>
-        <form role="form" method="post">
+        <g:formRemote name="create_post" url="[controller: 'post', action: 'saveCreate']" update="update" role="form" method="post">
+            <div id="update"></div>
             <article class="animate move_from_bottom_short">
                 <div class="row">
                     <div class="col-md-8">
@@ -28,112 +29,62 @@
             <article class="animate move_from_bottom_short">
                 <h3>Địa chỉ</h3>
                 <div class="row">
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <select name="tinhthanh" multiple title="Tỉnh/Thành phố" >
-                                <option value="1">Hồ Chí Minh</option>
-                                <option value="2">Đà Nẵng</option>
-                                <option value="3">Hà Nội</option>
-                                <option value="4">Bà Rịa - Vũng Tàu</option>
-                                <option value="5">Nha Trang</option>
-                                <option value="6">Bình Phước</option>
-                                <option value="1">Hồ Chí Minh</option>
-                                <option value="2">Đà Nẵng</option>
-                                <option value="3">Hà Nội</option>
-                                <option value="4">Bà Rịa - Vũng Tàu</option>
-                                <option value="5">Nha Trang</option>
-                                <option value="6">Bình Phước</option>
-                                <option value="1">Hồ Chí Minh</option>
-                                <option value="2">Đà Nẵng</option>
-                                <option value="3">Hà Nội</option>
-                                <option value="4">Bà Rịa - Vũng Tàu</option>
-                                <option value="5">Nha Trang</option>
-                                <option value="6">Bình Phước</option>
-                            </select>
+                    <div class="col-md-12">
+                        <div class="form-group form-group-lg">
+                            <input type="text" class="form-control" id="diachi" name="diachi" placeholder="Dia chi">
                         </div>
-                        <!-- end form-group -->
-                        <div class="form-group">
-                            <select name="quanhuyen" multiple title="City" id="city">
-                                <option value="1">Seattle</option>
-                                <option value="2">Spokane</option>
-                                <option value="3">Tacoma</option>
-                                <option value="4">Vancouver</option>
-                            </select>
+                        <div class="row">
+                            <div class="col-md-3 col-sm-3 col-xs-3">
+                                <div class="form-group form-group-lg">
+                                    <input type="text" class="form-control" name="sonha" placeholder="So nha">
+                                </div>
+                            </div>
+                            <div class="col-md-9 col-sm-9 col-xs-9">
+                                <div class="form-group form-group-lg">
+                                    <input type="text" class="form-control" name="tenduong" placeholder="Ten duong">
+                                </div>
+                            </div>
                         </div>
-                        <!-- end form-group -->
-                        <div class="form-group">
-                            <textarea class="form-control" rows="3" placeholder="Additional Address Info"></textarea>
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group form-group-lg">
+                                    <input type="text" class="form-control" name="phuong" placeholder="Phuong">
+                                </div>
+                            </div>
                         </div>
-
+                        <div class="row">
+                            <div class="col-md-6 col-sm-6 col-xs-6">
+                                <div class="form-group form-group-lg">
+                                    <input type="text" class="form-control" id="quanhuyen" name="quanhuyen" placeholder="Quan/huyen">
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-6">
+                                <div class="form-group form-group-lg">
+                                    <input type="text" class="form-control" id="tinhthanh" name="tinhthanh" placeholder="Tinh thanh">
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-md-12">
                         <div id="map-simple"></div>
                     </div>
-                    <!-- end col-md-8-->
                 </div>
             </article>
             <!--end Address-->
             <article class="animate move_from_bottom_short">
-                <h3>Overview</h3>
+                <h3>Tong quan</h3>
                 <div class="row">
                     <div class="col-md-4">
                         <div class="form-group">
-                            <select name="type" id="type">
-                                <option value="">Property Type</option>
-                                <option value="1">Apartment</option>
-                                <option value="2">Condominium</option>
-                                <option value="3">House</option>
-                                <option value="4">Construction Site</option>
-                                <option value="5">Forest</option>
-                            </select>
-                        </div>
-                        <!-- end .form-group -->
-                    </div>
-                    <!--end .col-md-4-->
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <select name="type" id="status">
-                                <option value="">Status</option>
-                                <option value="1">Sale</option>
-                                <option value="2">Rent</option>
-                                <option value="3">In Hold</option>
-                            </select>
-                        </div>
-                        <!-- end .form-group -->
-                    </div>
-                    <!--end .col-md-4-->
-                </div>
-                <!--end .row-->
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <input type="text" class="form-control" id="bedrooms" name="bedrooms" placeholder="Bedrooms">
+                            <g:select name="loai" from="${com.tinnhatro.Post.Loai.values()}" optionValue="name"/>
                         </div>
                     </div>
-                    <!--end .col-md-4-->
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <input type="text" class="form-control" id="bathrooms" name="bathrooms" placeholder="Bathrooms">
-                        </div>
-                    </div>
-                    <!--end .col-md-4-->
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <input type="text" class="form-control" id="rooms" name="rooms" placeholder="Rooms">
-                        </div>
-                    </div>
-                    <!--end .col-md-4-->
-                </div>
-                <!--end .row-->
-                <div class="row">
                     <div class="col-md-4">
                         <div class="input-group drop-down">
-                            <input type="text" class="form-control" id="area" name="area" placeholder="Area">
+                            <input type="text" class="form-control" name="dientich" placeholder="Dien tich">
                             <div class="input-group-btn">
-                                <select name="type" id="measure">
+                                <select id="measure">
                                     <option value="1">m<sup>2</sup></option>
-                                    <option value="2">sqft</option>
-                                    <option value="3">ha</option>
                                 </select>
                             </div><!-- /btn-group -->
                         </div><!-- /input-group -->
@@ -141,42 +92,51 @@
                     <!--end .col-md-4-->
                     <div class="col-md-4">
                         <div class="form-group">
-                            <input type="text" class="form-control" id="garages" name="garages" placeholder="Garages">
-                        </div>
-                    </div>
-                    <!--end .col-md-4-->
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <input type="text" class="form-control" id="build-year" name="build-year" placeholder="Build Year">
+                            <input type="text" class="form-control" id="build-year" name="namxay" placeholder="Nam xay dung">
                         </div>
                     </div>
                     <!--end .col-md-4-->
                 </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <select name="doituong">
+                                <option disabled selected>Doi tuong cho thue</option>
+                                <option value="Nam">Nam</option>
+                                <option value="Nu">Nu</option>
+                                <option value="Tat ca">Tat ca</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <br>
+                </div>
+
                 <!--end .row-->
             </article>
             <!--end Overview-->
             <article>
-                <h3>Gallery</h3>
+                <h3>Hinh anh</h3>
+                <input id="file-1" type="file" multiple class="file" data-overwrite-initial="false" data-min-file-count="2" accept=".jpeg,.jpg,.png">
             </article>
             <!--end Gallery-->
             <article>
-                <h3>Features</h3>
+                <h3>Tien ich</h3>
                 <ul class="list-unstyled checkboxes">
-                    <li><div class="checkbox"><label><input type="checkbox" name="features[]" value="1">Free Parking</label></div></li>
-                    <li><div class="checkbox"><label><input type="checkbox" name="features[]" value="2">Cards Accepted</label></div></li>
-                    <li><div class="checkbox"><label><input type="checkbox" name="features[]" value="3">Wi-Fi</label></div></li>
-                    <li><div class="checkbox"><label><input type="checkbox" name="features[]" value="4">Air Condition</label></div></li>
-                    <li><div class="checkbox"><label><input type="checkbox" name="features[]" value="5">Reservations</label></div></li>
-                    <li><div class="checkbox"><label><input type="checkbox" name="features[]" value="6">Team-buildings</label></div></li>
-                    <li><div class="checkbox"><label><input type="checkbox" name="features[]" value="7">Places to seat</label></div></li>
-                    <li><div class="checkbox"><label><input type="checkbox" name="features[]" value="8">Winery</label></div></li>
-                    <li><div class="checkbox"><label><input type="checkbox" name="features[]" value="9">Draft Beer</label></div></li>
-                    <li><div class="checkbox"><label><input type="checkbox" name="features[]" value="10">LCD</label></div></li>
-                    <li><div class="checkbox"><label><input type="checkbox" name="features[]" value="11">Saloon</label></div></li>
-                    <li><div class="checkbox"><label><input type="checkbox" name="features[]" value="12">Free Access</label></div></li>
-                    <li><div class="checkbox"><label><input type="checkbox" name="features[]" value="13">Terrace</label></div></li>
-                    <li><div class="checkbox"><label><input type="checkbox" name="features[]" value="14">Minigolf</label></div></li>
-                    <li><div class="checkbox"><label><input type="checkbox" name="features[]" value="15">Night Bar</label></div></li>
+                    <li><div class="checkbox"><label><input type="checkbox" name="features[]" value="1">Nha ve sinh rieng</label></div></li>
+                    <li><div class="checkbox"><label><input type="checkbox" name="features[]" value="2">Ban cong</label></div></li>
+                    <li><div class="checkbox"><label><input type="checkbox" name="features[]" value="3">Tivi</label></div></li>
+                    <li><div class="checkbox"><label><input type="checkbox" name="features[]" value="6">Tu Lanh</label></div></li>
+                    <li><div class="checkbox"><label><input type="checkbox" name="features[]" value="4">May nuoc nong</label></div></li>
+                    <li><div class="checkbox"><label><input type="checkbox" name="features[]" value="5">May lanh</label></div></li>
+                    <li><div class="checkbox"><label><input type="checkbox" name="features[]" value="6">Cho de xe</label></div></li>
+                    <li><div class="checkbox"><label><input type="checkbox" name="features[]" value="6">Giuong, nem</label></div></li>
+                    <li><div class="checkbox"><label><input type="checkbox" name="features[]" value="6">Tu quan ao</label></div></li>
+                    <li><div class="checkbox"><label><input type="checkbox" name="features[]" value="6">Gio giac tu do</label></div></li>
+                    <li><div class="checkbox"><label><input type="checkbox" name="features[]" value="6">Wifi cap quang</label></div></li>
+
+
                 </ul>
             </article>
             <!--end Features-->
@@ -191,7 +151,7 @@
                 <small>By clicking “submit” button you agree with <a href="" class="link">Terms and Conditions</a></small>
             </article>
             <!--end terms-->
-        </form>
+        </g:formRemote>
     </div>
     <!--end .row-->
 </div>
@@ -208,7 +168,7 @@
 
         averageColor( $('#item-detail') );
 
-        //bootstrapSelect();
+        bootstrapSelect();
 
         $('input').iCheck();
 
@@ -217,5 +177,32 @@
         setTimeout(function() {
             simpleMap(_latitude, _longitude,draggableMarker,scrollwheel);
         }, 1000);
+
+        $(window).keydown(function(event){
+            if(event.keyCode == 13) {
+                console.log(event.targetEl)
+                event.stopPropagation();
+                return false;
+            }
+        });
+
+        $("#file-1").fileinput({
+            uploadUrl: '#', // you must set a valid URL here else you will get an error
+            allowedFileTypes: ['image'],
+            allowedFileExtensions: ['jpg', 'png', 'gif'],
+            overwriteInitial: false,
+            maxFileSize: 1000,
+            maxFilesNum: 10,
+            showUpload: false,
+            showRemove: false,
+            showUploadedThumbs: false,
+            showCaption: false,
+            maxFileSize: 512,
+            maxFileCount: 3,
+            //allowedFileTypes: ['image', 'video', 'flash'],
+            slugCallback: function (filename) {
+                return filename.replace('(', '_').replace(']', '_');
+            }
+        });
     });
 </script>

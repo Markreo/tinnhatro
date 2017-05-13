@@ -444,6 +444,81 @@ function simpleMap(_latitude, _longitude, draggableMarker, scrollwheel, external
         });
 
         marker.content.className = 'marker-loaded';
+
+
+        //auto complete
+        var input = document.getElementById('diachi');
+        var autocompleteSimple = new google.maps.places.Autocomplete(input, {
+            types: ["geocode"]
+        });
+        autocompleteSimple.bindTo('bounds', map);
+
+        autocompleteSimple.addListener('place_changed', function() {
+
+            var componentForm = {
+                street_number: 'short_name', // so nha
+                route: 'long_name', // ten duong
+                sublocality_level_1: 'long_name', //phuong
+                locality: 'long_name',//huyen
+                political: 'long_name',
+                administrative_area_level_2: 'long_name',
+                administrative_area_level_1: 'short_name',// tinh
+                country: 'long_name',
+                postal_code: 'short_name'
+            };
+            var address = '';
+            //hide marker
+
+            marker.setVisible(false)
+            var place = autocompleteSimple.getPlace();
+            if (!place.geometry) {
+                window.alert("No details available for input: '" + place.name + "'");
+                return;
+            }
+
+            if (place.geometry.viewport) {
+                map.fitBounds(place.geometry.viewport);
+            } else {
+                map.setCenter(place.geometry.location);
+                map.setZoom(10);
+            }
+
+            marker.setPosition(place.geometry.location);
+            marker.setVisible(true);
+
+            if (place.address_components) {
+                console.log('-------------------------------------')
+                console.log(place.address_components)
+                for (var i = 0; i < place.address_components.length; i++) {
+                    var addressType = place.address_components[i].types[0];
+                    if (componentForm[addressType]) {
+                        var val = place.address_components[i][componentForm[addressType]];
+                        switch (addressType) {
+                            case 'street_number': {
+                                $("input[name='sonha']").val(val);
+                                break;
+                            }
+                            case 'route': {
+                                $("input[name='tenduong']").val(val);
+                                break;
+                            }
+                            case 'sublocality_level_1': {
+                                $("input[name='phuong']").val(val);
+                                break;
+                            }
+                            case 'administrative_area_level_2': {
+                                $("input[name='quanhuyen']").val(val);
+                                break;
+                            }
+                            case 'administrative_area_level_1': {
+                                $("input[name='tinhthanh']").val(val);
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        })
     }
 
 }

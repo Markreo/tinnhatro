@@ -2,7 +2,7 @@ package com.tinnhatro
 
 import grails.plugin.springsecurity.annotation.Secured
 
-@Secured("permitAll")
+@Secured("ROLE_SYSADMIN,ROLE_ADMIN,ROLE_CHOTHUE")
 class PostController {
 
     def springSecurityService
@@ -11,10 +11,10 @@ class PostController {
 
     @Secured("permitAll")
     def create() {
-        if(springSecurityService.isLoggedIn() || true){
-            render(template: 'createPost')
-        } else {
-            render(template: '/user/createUser')
-        }
+        render(template: 'createPost')
+    }
+
+    def saveCreate() {
+
     }
 }

@@ -18,11 +18,15 @@ class Post {
     String tieude
     Loai loai = Loai.PHONGTRO
     String diachi
+    String phuong
     String quanhuyen
     String tinhthanh
     String dientich
     long gia
     String mota
+
+    String namxay = '2017'
+    String doituong
 
 
     static constraints = {
