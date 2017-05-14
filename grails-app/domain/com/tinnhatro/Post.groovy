@@ -18,6 +18,8 @@ class Post {
     String tieude
     Loai loai = Loai.PHONGTRO
     String diachi
+    String sonha
+    String tenduong
     String phuong
     String quanhuyen
     String tinhthanh
@@ -25,19 +27,25 @@ class Post {
     long gia
     String mota
 
-    String namxay = '2017'
+    String namxay
     String doituong
 
 
     static constraints = {
         tieude nullable: false, blank: false
-        loai nullable: false
+        loai nullable: true
         diachi nullable: true
+        sonha nullable: true
+        tenduong nullable: true
+        phuong nullable: true
         quanhuyen nullable: false
         tinhthanh nullable: false
+        dientich nulable: true
         gia nullable: false
-        mota nullable: false
+        mota nullable: true
         user nullable: true
+        namxay nullable: true
+        doituong nullable: true
     }
 
     static mapping = {
