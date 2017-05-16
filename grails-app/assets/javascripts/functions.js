@@ -487,8 +487,6 @@ function simpleMap(_latitude, _longitude, draggableMarker, scrollwheel, external
             marker.setVisible(true);
 
             if (place.address_components) {
-                console.log('-------------------------------------')
-                console.log(place.address_components)
                 for (var i = 0; i < place.address_components.length; i++) {
                     var addressType = place.address_components[i].types[0];
                     if (componentForm[addressType]) {
@@ -518,6 +516,31 @@ function simpleMap(_latitude, _longitude, draggableMarker, scrollwheel, external
                     }
                 }
             }
+        });
+
+        $("#submit_createpost").on('click', function(event) {
+            event.preventDefault();
+            event.stopPropagation();
+
+            var form = $("#create_post")[0];
+            var formData = new FormData(form);
+            formData.append('lat', marker.getPosition().lat());
+            formData.append('lng', marker.getPosition().lng());
+            var files = $('#file-1').fileinput('getFileStack');
+            $.each(files, function(index, data) {
+                formData.append('files', data)
+            });
+            $.ajax({
+                url: createLink({controller: 'post', action: 'saveCreate'}),
+                data: formData,
+                type: 'POST',
+                contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
+                processData: false, // NEEDED, DON'T OMIT THIS
+                success: function (resp) {
+                    console.log('success')
+                }
+            });
+
         })
     }
 

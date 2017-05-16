@@ -142,7 +142,7 @@
             <!--end Features-->
             <article class="center">
                 <div class="form-group">
-                    <button type="submit" class="btn btn-circle btn-primary btn-xl"><i class="fa fa-check"></i></button>
+                    <button id="submit_createpost" type="submit" class="btn btn-circle btn-primary btn-xl"><i class="fa fa-check"></i></button>
                 </div>
                 <!--end .form-group-->
             </article>

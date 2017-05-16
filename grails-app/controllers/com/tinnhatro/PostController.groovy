@@ -15,6 +15,7 @@ class PostController {
 
     def saveCreate() {
         println(params)
+        println(request.getFiles('files'))
         params.remove("features[]")
         def post = new Post(params)
         post.user = springSecurityService.currentUser
