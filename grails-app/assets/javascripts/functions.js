@@ -524,8 +524,8 @@ function simpleMap(_latitude, _longitude, draggableMarker, scrollwheel, external
 
             var form = $("#create_post")[0];
             var formData = new FormData(form);
-            formData.append('lat', marker.getPosition().lat());
-            formData.append('lng', marker.getPosition().lng());
+            formData.append('latitude', marker.getPosition().lat());
+            formData.append('longitude', marker.getPosition().lng());
             var files = $('#file-1').fileinput('getFileStack');
             $.each(files, function(index, data) {
                 formData.append('files', data)

@@ -66,6 +66,7 @@
                         </div>
                     </div>
                     <div class="col-md-12">
+                        <i style="color: #BBBBBB; font-size: 12px">Hãy xác định lại vị trí chính xác hơn!</i>
                         <div id="map-simple"></div>
                     </div>
                 </div>
@@ -124,19 +125,9 @@
             <article>
                 <h3>Tien ich</h3>
                 <ul class="list-unstyled checkboxes">
-                    <li><div class="checkbox"><label><input type="checkbox" name="features[]" value="1">Nha ve sinh rieng</label></div></li>
-                    <li><div class="checkbox"><label><input type="checkbox" name="features[]" value="2">Ban cong</label></div></li>
-                    <li><div class="checkbox"><label><input type="checkbox" name="features[]" value="3">Tivi</label></div></li>
-                    <li><div class="checkbox"><label><input type="checkbox" name="features[]" value="6">Tu Lanh</label></div></li>
-                    <li><div class="checkbox"><label><input type="checkbox" name="features[]" value="4">May nuoc nong</label></div></li>
-                    <li><div class="checkbox"><label><input type="checkbox" name="features[]" value="5">May lanh</label></div></li>
-                    <li><div class="checkbox"><label><input type="checkbox" name="features[]" value="6">Cho de xe</label></div></li>
-                    <li><div class="checkbox"><label><input type="checkbox" name="features[]" value="6">Giuong, nem</label></div></li>
-                    <li><div class="checkbox"><label><input type="checkbox" name="features[]" value="6">Tu quan ao</label></div></li>
-                    <li><div class="checkbox"><label><input type="checkbox" name="features[]" value="6">Gio giac tu do</label></div></li>
-                    <li><div class="checkbox"><label><input type="checkbox" name="features[]" value="6">Wifi cap quang</label></div></li>
-
-
+                    <g:each in="${com.tinnhatro.Utilities.values()}" var="tienich">
+                        <li><div class="checkbox"><label><input type="checkbox" name="tienich" value="${tienich}">${tienich.name}</label></div></li>
+                    </g:each>
                 </ul>
             </article>
             <!--end Features-->

@@ -28,8 +28,8 @@ class Post {
     String quanhuyen
     String tinhthanh
     String dientich
-    double latitude
-    double longitude
+    String latitude
+    String longitude
     long gia
     String mota
 

@@ -195,367 +195,17 @@
         <!--end .map-wrapper-->
 
         <div class="masonry grid full-width animate">
+
+        <g:each in="${posts}" var="post">
             <div class="item move_from_bottom idle">
-                <a href="${createLink(controller: 'home', action: 'item')}" data-expand-width="col-9" data-transition-parent=".content-loader" data-external="true">
-                    <div class="inner">
-                        <div class="image">
-                            <div class="price average-color"><span>$25.000</span></div>
-                            <asset:image src="items/1.jpg" alt=""/>
-                        </div>
-                        <div class="item-content">
-                            <header class="average-color">
-                                <h2>2151 Mulberry Avenue</h2>
-                                <h3>63 Birch Street</h3>
-                            </header>
-                            <footer>
-                                <dl>
-                                    <dt>Bathrooms</dt>
-                                    <dd>1</dd>
-                                    <dt>Bedrooms</dt>
-                                    <dd>2</dd>
-                                    <dt>Area</dt>
-                                    <dd>165m<sup>2</sup></dd>
-                                    <dt>Garages</dt>
-                                    <dd>1</dd>
-                                </dl>
-                            </footer>
-                        </div>
-                    </div>
-                </a>
+                <g:render template="/post/tile" model="[post: post]"/>
             </div>
+        </g:each>
+
+        <!--end .item-->
             <!--end .item-->
 
-            <div class="item move_from_bottom idle">
-                <a href="assets/pages/items/2_e.html" data-expand-width="col-9" data-transition-parent=".content-loader" data-external="true">
-                    <div class="inner">
-                        <div class="image">
-                            <div class="price average-color"><span>$49.000</span></div>
-                            <asset:image src="items/2.jpg" alt=""/>
-                        </div>
-                        <div class="item-content">
-                            <header class="average-color">
-                                <h2>3295 Valley Street</h2>
-                                <h3>Collingswood</h3>
-                            </header>
-                            <footer>
-                                <dl>
-                                    <dt>Bathrooms</dt>
-                                    <dd>1</dd>
-                                    <dt>Bedrooms</dt>
-                                    <dd>2</dd>
-                                    <dt>Area</dt>
-                                    <dd>165m<sup>2</sup></dd>
-                                    <dt>Garages</dt>
-                                    <dd>1</dd>
-                                </dl>
-                            </footer>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <!--end .item-->
-
-            <div class="item move_from_bottom idle">
-                <a href="assets/pages/items/3_e.html" data-expand-width="col-9" data-transition-parent=".content-loader" data-external="true">
-                    <div class="inner">
-                        <div class="image">
-                            <div class="price average-color"><span>$36.400</span></div>
-                            <asset:image src="items/3.jpg" alt=""/>
-                        </div>
-                        <div class="item-content">
-                            <header class="average-color">
-                                <h2>534 Roosevelt Street</h2>
-                                <h3>San Francisco</h3>
-                            </header>
-                            <footer>
-                                <dl>
-                                    <dt>Bathrooms</dt>
-                                    <dd>1</dd>
-                                    <dt>Bedrooms</dt>
-                                    <dd>2</dd>
-                                    <dt>Area</dt>
-                                    <dd>165m<sup>2</sup></dd>
-                                    <dt>Garages</dt>
-                                    <dd>1</dd>
-                                </dl>
-                            </footer>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <!--end .item-->
-
-            <div class="item move_from_bottom idle">
-                <a href="assets/pages/items/4_e.html" data-expand-width="col-9" data-transition-parent=".content-loader" data-external="true">
-                    <div class="inner">
-                        <div class="image">
-                            <div class="price average-color"><span>$72.000</span></div>
-                            <asset:image src="items/4.jpg" alt=""/>
-                        </div>
-                        <div class="item-content">
-                            <header class="average-color">
-                                <h2>3311 Centennial Farm Road</h2>
-                                <h3>Carroll, IA 51401</h3>
-                            </header>
-                            <footer>
-                                <dl>
-                                    <dt>Bathrooms</dt>
-                                    <dd>1</dd>
-                                    <dt>Bedrooms</dt>
-                                    <dd>2</dd>
-                                    <dt>Area</dt>
-                                    <dd>165m<sup>2</sup></dd>
-                                    <dt>Garages</dt>
-                                    <dd>1</dd>
-                                </dl>
-                            </footer>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <!--end .item-->
-
-            <div class="item move_from_bottom idle">
-                <a href="assets/pages/items/6_e.html" data-expand-width="col-9" data-transition-parent=".content-loader" data-external="true">
-                    <div class="inner">
-                        <div class="image">
-                            <div class="price average-color"><span>$125.000</span></div>
-                            <asset:image src="items/6.jpg" alt=""/>
-                        </div>
-                        <div class="item-content">
-                            <header class="average-color">
-                                <h2>3295 Valley Street</h2>
-                                <h3>Collingswood</h3>
-                            </header>
-                            <footer>
-                                <dl>
-                                    <dt>Bathrooms</dt>
-                                    <dd>1</dd>
-                                    <dt>Bedrooms</dt>
-                                    <dd>2</dd>
-                                    <dt>Area</dt>
-                                    <dd>165m<sup>2</sup></dd>
-                                    <dt>Garages</dt>
-                                    <dd>1</dd>
-                                </dl>
-                            </footer>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <!--end .item-->
-
-            <div class="item move_from_bottom idle">
-                <a href="assets/pages/items/5_e.html" data-expand-width="col-9" data-transition-parent=".content-loader" data-external="true">
-                    <div class="inner">
-                        <div class="image">
-                            <div class="price average-color"><span>$59.900</span></div>
-                            <asset:image src="items/5.jpg" alt=""/>
-                        </div>
-                        <div class="item-content">
-                            <header class="average-color">
-                                <h2>1164 Bombardier Way</h2>
-                                <h3>Plymouth</h3>
-                            </header>
-                            <footer>
-                                <dl>
-                                    <dt>Bathrooms</dt>
-                                    <dd>1</dd>
-                                    <dt>Bedrooms</dt>
-                                    <dd>2</dd>
-                                    <dt>Area</dt>
-                                    <dd>165m<sup>2</sup></dd>
-                                    <dt>Garages</dt>
-                                    <dd>1</dd>
-                                </dl>
-                            </footer>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <!--end .item-->
-
-            <div class="item move_from_bottom">
-                <a href="assets/pages/items/8_e.html" data-expand-width="col-9" data-transition-parent=".content-loader" data-external="true">
-                    <div class="inner">
-                        <div class="image">
-                            <div class="price average-color"><span>$42.200</span></div>
-                            <asset:image src="items/8.jpg" alt=""/>
-                        </div>
-                        <div class="item-content">
-                            <header class="average-color">
-                                <h2>942 Hillview Drive</h2>
-                                <h3>Plymouth</h3>
-                            </header>
-                            <footer>
-                                <dl>
-                                    <dt>Bathrooms</dt>
-                                    <dd>1</dd>
-                                    <dt>Bedrooms</dt>
-                                    <dd>2</dd>
-                                    <dt>Area</dt>
-                                    <dd>165m<sup>2</sup></dd>
-                                    <dt>Garages</dt>
-                                    <dd>1</dd>
-                                </dl>
-                            </footer>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <!--end .item-->
-
-            <div class="item move_from_bottom">
-                <a href="assets/pages/items/7_e.html" data-expand-width="col-9" data-transition-parent=".content-loader" data-external="true">
-                    <div class="inner">
-                        <div class="image">
-                            <div class="price average-color"><span>$83.600</span></div>
-                            <asset:image src="items/7.jpg" alt=""/>
-                        </div>
-                        <div class="item-content">
-                            <header class="average-color">
-                                <h2>2462 Orphan Road</h2>
-                                <h3>Seattle, WA 98109</h3>
-                            </header>
-                            <footer>
-                                <dl>
-                                    <dt>Bathrooms</dt>
-                                    <dd>1</dd>
-                                    <dt>Bedrooms</dt>
-                                    <dd>2</dd>
-                                    <dt>Area</dt>
-                                    <dd>165m<sup>2</sup></dd>
-                                    <dt>Garages</dt>
-                                    <dd>1</dd>
-                                </dl>
-                            </footer>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <!--end .item-->
-
-            <div class="item move_from_bottom">
-                <a href="assets/pages/items/1_e.html"  data-expand-width="col-9" data-transition-parent=".content-loader" data-external="true">
-                    <div class="inner">
-                        <div class="image">
-                            <div class="price average-color"><span>$25.000</span></div>
-                            <asset:image src="items/1.jpg" alt=""/>
-                        </div>
-                        <div class="item-content">
-                            <header class="average-color">
-                                <h2>2151 Mulberry Avenue</h2>
-                                <h3>63 Birch Street</h3>
-                            </header>
-                            <footer>
-                                <dl>
-                                    <dt>Bathrooms</dt>
-                                    <dd>1</dd>
-                                    <dt>Bedrooms</dt>
-                                    <dd>2</dd>
-                                    <dt>Area</dt>
-                                    <dd>165m<sup>2</sup></dd>
-                                    <dt>Garages</dt>
-                                    <dd>1</dd>
-                                </dl>
-                            </footer>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <!--end .item-->
-
-            <div class="item move_from_bottom">
-                <a href="assets/pages/items/2_e.html" data-expand-width="col-9" data-transition-parent=".content-loader" data-external="true">
-                    <div class="inner">
-                        <div class="image">
-                            <div class="price average-color"><span>$49.000</span></div>
-                            <asset:image src="items/2.jpg" alt=""/>
-                        </div>
-                        <div class="item-content">
-                            <header class="average-color">
-                                <h2>3295 Valley Street</h2>
-                                <h3>Collingswood</h3>
-                            </header>
-                            <footer>
-                                <dl>
-                                    <dt>Bathrooms</dt>
-                                    <dd>1</dd>
-                                    <dt>Bedrooms</dt>
-                                    <dd>2</dd>
-                                    <dt>Area</dt>
-                                    <dd>165m<sup>2</sup></dd>
-                                    <dt>Garages</dt>
-                                    <dd>1</dd>
-                                </dl>
-                            </footer>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <!--end .item-->
-
-            <div class="item move_from_bottom">
-                <a href="assets/pages/items/3_e.html" data-expand-width="col-9" data-transition-parent=".content-loader" data-external="true">
-                    <div class="inner">
-                        <div class="image">
-                            <div class="price average-color"><span>$36.400</span></div>
-                            <asset:image src="items/3.jpg" alt=""/>
-                        </div>
-                        <div class="item-content">
-                            <header class="average-color">
-                                <h2>534 Roosevelt Street</h2>
-                                <h3>San Francisco</h3>
-                            </header>
-                            <footer>
-                                <dl>
-                                    <dt>Bathrooms</dt>
-                                    <dd>1</dd>
-                                    <dt>Bedrooms</dt>
-                                    <dd>2</dd>
-                                    <dt>Area</dt>
-                                    <dd>165m<sup>2</sup></dd>
-                                    <dt>Garages</dt>
-                                    <dd>1</dd>
-                                </dl>
-                            </footer>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <!--end .item-->
-
-            <div class="item move_from_bottom">
-                <a href="assets/pages/items/4_e.html" data-expand-width="col-9" data-transition-parent=".content-loader" data-external="true">
-                    <div class="inner">
-                        <div class="image">
-                            <div class="price average-color"><span>$72.000</span></div>
-                            <asset:image src="items/4.jpg" alt=""/>
-                        </div>
-                        <div class="item-content">
-                            <header class="average-color">
-                                <h2>3311 Centennial Farm Road</h2>
-                                <h3>Carroll, IA 51401</h3>
-                            </header>
-                            <footer>
-                                <dl>
-                                    <dt>Bathrooms</dt>
-                                    <dd>1</dd>
-                                    <dt>Bedrooms</dt>
-                                    <dd>2</dd>
-                                    <dt>Area</dt>
-                                    <dd>165m<sup>2</sup></dd>
-                                    <dt>Garages</dt>
-                                    <dd>1</dd>
-                                </dl>
-                            </footer>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <!--end .item-->
-
-            <div class="item scale_in block-transparent height-500">
+          %{--  <div class="item scale_in block-transparent height-500">
                 <div class="wrapper center">
                     <a href="assets/pages/submit_e.html" data-expand-width="col-8" data-transition-parent=".content-loader" data-external="true">
                         <asset:image src="plus-circle.png" class="plus"/>
@@ -1161,7 +811,7 @@
                         </div>
                     </div>
                 </a>
-            </div>
+            </div>--}%
             <!--end .item-->
         </div>
 
@@ -1199,14 +849,15 @@
 
     /*var _latitude = 10.870398;
     var _longitude = 106.802923;*/
-    var _latitude = 51.541216;
-    var _longitude = -0.095678;
+    var _latitude = 10.7704207;
+    var _longitude = 106.6990068;
     var jsonPath = '${createLink(controller: 'home', action: 'getJsonFile')}';
 
     // Load JSON data and create Google Maps
     $.getJSON(jsonPath)
         .done(function(json) {
             console.log('done');
+            console.log(json)
             createHomepageGoogleMap(_latitude,_longitude,json);
         })
         .fail(function( jqxhr, textStatus, error ) {
