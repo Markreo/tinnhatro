@@ -2,6 +2,8 @@ function drawInfobox(infoboxContent, json, i){
 
     if( json.data[i].price )        { var price = '<div class="price average-color"><span>' + json.data[i].price + '</span></div>' }
         else                        { price = '' }
+    if( json.data[i].mota )        { var mota = json.data[i].mota }
+    else                        {var mota = '' }
     if(json.data[i].id)             { var id = json.data[i].id }
         else                        { id = '' }
     if(json.data[i].url)            { var url = json.data[i].url }
@@ -12,8 +14,8 @@ function drawInfobox(infoboxContent, json, i){
         else                        { title = '' }
     if(json.data[i].location)       { var location = json.data[i].location }
         else                        { location = '' }
-    if(json.data[i].gallery[0])     { var gallery = json.data[i].gallery[0] }
-        else                        { gallery[0] = '/default-item.jpg' }
+    if(json.data[i].image[0])     {var gallery = json.data[i].image[0] }
+        else                        {var gallery = '/default-item.jpg' }
 
     var ibContent = '';
     ibContent =
@@ -22,7 +24,8 @@ function drawInfobox(infoboxContent, json, i){
             '<a href="'+ url +'" data-expand-width="col-9" data-transition-parent=".content-loader" data-external="true">' +
                 '<div class="image">' +
                     price +
-                    '<img src="'+ createLink({uri: gallery}) +'" alt="">' +
+                    '<tnt:image filename="' + gallery + '"/>' +
+                    // '<img src="'+ createLink({uri: gallery}) +'" alt="">' +
                 '</div>' +
                 '<header class="average-color">' +
                     '<h1 class="animate move_from_top_short">'+ title +'</h1>' +
@@ -32,8 +35,12 @@ function drawInfobox(infoboxContent, json, i){
         '</div>' +
         '<div class="right">' +
             '<article class="animate move_from_top_short">' +
-                '<h3>Description</h3>' +
-                '<p>Curabitur odio nibh, luctus non pulvinar a, ultricies ac diam. Donec neque massa, viverra interdum eros ut, imperdiet </p>' +
+                '<h3>Mô tả</h3>' +
+                '<p>' + mota + json.data[i].diachi + '</p>' +
+            '</article>' +
+            '<article class="animate move_from_top_short">' +
+            '<h3>Địa chỉ</h3>' +
+            '<p>' + json.data[i].diachi + '</p>' +
             '</article>' +
             '<article class="animate move_from_top_short">' +
                 '<h3>Overview</h3>' +

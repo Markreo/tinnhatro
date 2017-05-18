@@ -1,19 +1,19 @@
 <div id="submit-page">
     <div class="inner">
         <h1 id="temp">Đăng tin</h1>
-        <g:formRemote name="create_post" url="[controller: 'post', action: 'saveCreate']" update="update" role="form" method="post">
-            <div id="update"></div>
+        <g:formRemote name="create_post" url="[controller: 'post', action: 'saveCreate']" update="update_createPost" role="form" method="post">
+            <div id="update_createPost"></div>
             <article class="animate move_from_bottom_short">
                 <div class="row">
                     <div class="col-md-8">
                         <div class="form-group form-group-lg">
-                            <input type="text" class="form-control" id="title" name="tieude" placeholder="Tiêu đề">
+                            <input type="text" class="form-control" id="title" name="tieude" placeholder="Tiêu đề" required>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group form-group-lg">
                             <div class="input-group">
-                                <input type="text" class="form-control" id="price" name="gia" placeholder="Giá">
+                                <input type="text" class="form-control" id="price" name="gia" placeholder="Giá" required>
                                 <span class="input-group-addon">đ</span>
                             </div><!-- /input-group -->
                         </div>
@@ -31,7 +31,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group form-group-lg">
-                            <input type="text" class="form-control" id="diachi" name="diachi" placeholder="Dia chi">
+                            <input type="text" class="form-control" id="diachi" name="diachi" placeholder="Dia chi" required>
                         </div>
                         <div class="row">
                             <div class="col-md-3 col-sm-3 col-xs-3">
@@ -55,12 +55,12 @@
                         <div class="row">
                             <div class="col-md-6 col-sm-6 col-xs-6">
                                 <div class="form-group form-group-lg">
-                                    <input type="text" class="form-control" id="quanhuyen" name="quanhuyen" placeholder="Quan/huyen">
+                                    <input type="text" class="form-control" id="quanhuyen" name="quanhuyen" placeholder="Quan/huyen" required>
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-6">
                                 <div class="form-group form-group-lg">
-                                    <input type="text" class="form-control" id="tinhthanh" name="tinhthanh" placeholder="Tinh thanh">
+                                    <input type="text" class="form-control" id="tinhthanh" name="tinhthanh" placeholder="Tinh thanh" required>
                                 </div>
                             </div>
                         </div>
@@ -150,8 +150,8 @@
 
 <script>
     $(document).ready(function($) {
-        var _latitude = 51.541599;
-        var _longitude = -0.112588;
+        var _latitude = 10.791628;
+        var _longitude = 106.732535;
         var draggableMarker = true;
         var scrollwheel = true;
 
@@ -167,7 +167,7 @@
 
         setTimeout(function() {
             simpleMap(_latitude, _longitude,draggableMarker,scrollwheel);
-        }, 1000);
+        }, 200);
 
         $(window).keydown(function(event){
             if(event.keyCode == 13) {

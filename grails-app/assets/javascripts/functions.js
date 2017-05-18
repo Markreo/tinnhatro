@@ -522,25 +522,54 @@ function simpleMap(_latitude, _longitude, draggableMarker, scrollwheel, external
             event.preventDefault();
             event.stopPropagation();
 
-            var form = $("#create_post")[0];
-            var formData = new FormData(form);
-            formData.append('latitude', marker.getPosition().lat());
-            formData.append('longitude', marker.getPosition().lng());
-            var files = $('#file-1').fileinput('getFileStack');
-            $.each(files, function(index, data) {
-                formData.append('files', data)
-            });
-            $.ajax({
-                url: createLink({controller: 'post', action: 'saveCreate'}),
-                data: formData,
-                type: 'POST',
-                contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
-                processData: false, // NEEDED, DON'T OMIT THIS
-                success: function (resp) {
-                    console.log('success')
+            var error = [];
+
+            $(this).find('input').each(function() {
+                console.log($(this))
+                if(!$(this).prop('required')){
+                    error.add($(this).attr('name') + ' là bắt buộc!')
                 }
             });
+            console.log(error.length)
+            console.log(error)
+            if(error.length) {
+                var str ='';
+                error.each(function() {
+                    str += $(this)
+                });
+                bootbox.alert("ádasdasdas")
+            } else {
 
+                var form = $("#create_post")[0];
+                var formData = new FormData(form);
+                formData.append('latitude', marker.getPosition().lat());
+                formData.append('longitude', marker.getPosition().lng());
+                var files = $('#file-1').fileinput('getFileStack');
+                $.each(files, function (index, data) {
+                    formData.append('files', data)
+                });
+                $.ajax({
+                    url: createLink({controller: 'post', action: 'saveCreate'}),
+                    data: formData,
+                    type: 'POST',
+                    contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
+                    processData: false, // NEEDED, DON'T OMIT THIS
+                    success: function (resp) {
+                        if(resp.message == refresh) {
+                            $("#loader").html(resp.html)
+                        } else {
+                            if(resp.message == 'fail') {
+                                console.log("fail on create new post!")
+                            } else {
+                                if(resp.message == 'reload') {
+                                    location.reload();
+                                }
+                            }
+                        }
+
+                    }
+                });
+            }
         })
     }
 
@@ -719,9 +748,9 @@ function createHomepageGoogleMap(_latitude,_longitude,json){
             }
         ];
 
-        var markerCluster = new MarkerClusterer(map, newMarkers, { styles: clusterStyles, maxZoom: 19 });
+        var markerCluster = new MarkerClusterer(map, newMarkers, { styles: clusterStyles, maxZoom: 17 });
         markerCluster.onClick = function(clickedClusterIcon, sameLatitude, sameLongitude) {
-            return multiChoice(sameLatitude, sameLongitude, json);
+            map.setZoom(map.getZoom() + 1);
         };
 
         // Dynamic loading markers and data from JSON

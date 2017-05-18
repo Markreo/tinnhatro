@@ -5,6 +5,9 @@
             <g:if test="${post.image}">
                 <tnt:image filename="${post.image.first()}"/>
             </g:if>
+            <g:else>
+                <asset:image src="default-item.png"/>
+            </g:else>
         </div>
         <div class="item-content">
             <header class="average-color">

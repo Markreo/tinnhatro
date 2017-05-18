@@ -40,7 +40,7 @@ class User implements Serializable {
 		password = springSecurityService?.passwordEncoder ? springSecurityService.encodePassword(password) : password
 	}
 
-	static transients = ['springSecurityService']
+	static transients = ['springSecurityService', 'isAdmin']
 
 	static constraints = {
 		password blank: false, password: true
@@ -53,5 +53,9 @@ class User implements Serializable {
 	static mapping = {
 		table('auth_user')
 		password column: '`password`'
+	}
+
+	boolean isAdmin() {
+		return this.authorities.any {it.authority == 'ROLE_ADMIN' || it.authority == 'ROLE_SYSADMIN'}
 	}
 }

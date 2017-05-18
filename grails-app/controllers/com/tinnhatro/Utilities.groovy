@@ -5,7 +5,7 @@ package com.tinnhatro
  */
 enum Utilities {
     VESINHRIENG(0, "Nhà vệ sinh riêng"),
-    BANCON(1, "Ban công"),
+    BANCONG(1, "Ban công"),
     TIVI(2, "Tivi")
 
     int id

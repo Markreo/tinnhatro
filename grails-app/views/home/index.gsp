@@ -17,6 +17,7 @@
 
     <title>Tin nhà trọ</title>
     <asset:javascript  src="myjavascript.js" />
+    <asset:javascript  src="bootbox.min.js" />
 
 </head>
 

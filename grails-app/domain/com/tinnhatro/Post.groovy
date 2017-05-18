@@ -46,7 +46,7 @@ class Post {
         phuong nullable: true
         quanhuyen nullable: false
         tinhthanh nullable: false
-        dientich nulable: true
+        dientich nullable: true
         gia nullable: false
         mota nullable: true
         user nullable: true

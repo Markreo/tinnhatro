@@ -1,5 +1,6 @@
 package com.tinnhatro
 
+import grails.converters.JSON
 import grails.plugin.springsecurity.annotation.Secured
 import grails.util.Holders
 import org.springframework.util.IdGenerator
@@ -24,7 +25,7 @@ class PostController {
         println(post.toString())
         if(post.hasErrors() || !post.save(flush: true)) {
             println "save post error: ${post.errors}"
-            render('fail')
+            render([message: 'fail'] as JSON)
         } else {
             files.each { StandardMultipartHttpServletRequest.StandardMultipartFile file ->
                 File folder = new File(Holders.config.folder.tmp + "/${new Date().format('yyyy/MM/dd')}")
@@ -34,7 +35,11 @@ class PostController {
                 post.addToImage(f.path)
             }
             post.save(flush: true)
-            render('success')
+            if((springSecurityService.currentUser as User).isAdmin()) {
+                render([message: 'refresh', html: g.render(template: 'createPost')] as JSON)
+            } else {
+                render([message: 'reload'] as JSON)
+            }
         }
     }
 
