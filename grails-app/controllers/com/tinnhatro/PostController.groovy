@@ -49,5 +49,17 @@ class PostController {
         render(template: 'tile', model: [post: post])
     }
 
+    def test() {
 
+    }
+
+    @Secured('permitAll')
+    def detail(long id) {
+        Post post = Post.get(id)
+        if(post) {
+            render(template: 'detail', model: [post: post])
+        } else {
+            response.sendError(404)
+        }
+    }
 }

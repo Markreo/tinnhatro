@@ -36,6 +36,9 @@ class Post {
     String namxay
     String doituong
 
+    Date dateCreated
+    Date lastUpdated
+
 
     static constraints = {
         tieude nullable: false, blank: false
@@ -72,7 +75,7 @@ class Post {
                 rating: 4,
                 gallery: image.toList(),
                 price: this.gia,
-                "overview": tienich?.name,
+                overview: tienich?.name,
                 description: this.mota] as JSON
     }
 }

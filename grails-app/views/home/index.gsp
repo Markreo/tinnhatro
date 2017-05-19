@@ -43,7 +43,7 @@
                 <!--end Secondary navigation-->
                 <nav class="main">
                     <div class="brand">
-                        <a href="index-map.html">
+                        <a href="${createLink(controller: 'home')}">
                             <asset:image src="logo.png" alt="brand"/>
                         </a>
                     </div>

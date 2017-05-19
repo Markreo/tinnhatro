@@ -385,12 +385,6 @@ var mapStyles = [
 function simpleMap(_latitude, _longitude, draggableMarker, scrollwheel, externalCall){
 
     if( externalCall == true ){
-        if( $('.content-container').attr('id') == 'item-detail' ){
-            var path = '../../';
-        }
-        else {
-            path = '../';
-        }
         var  markerIcon = createLink({uri: "assets/marker.png"});
         loadScript(createLink({uri: "assets/richmarker-compiled.js"}),renderMap);
     }
@@ -405,7 +399,7 @@ function simpleMap(_latitude, _longitude, draggableMarker, scrollwheel, external
     function renderMap(){
         var mapCenter = new google.maps.LatLng(_latitude, _longitude);
         var mapOptions = {
-            zoom: 12,
+            zoom: 15,
             center: mapCenter,
             disableDefaultUI: true,
             scrollwheel: scrollwheel,
@@ -530,8 +524,6 @@ function simpleMap(_latitude, _longitude, draggableMarker, scrollwheel, external
                     error.add($(this).attr('name') + ' là bắt buộc!')
                 }
             });
-            console.log(error.length)
-            console.log(error)
             if(error.length) {
                 var str ='';
                 error.each(function() {
@@ -555,8 +547,8 @@ function simpleMap(_latitude, _longitude, draggableMarker, scrollwheel, external
                     contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
                     processData: false, // NEEDED, DON'T OMIT THIS
                     success: function (resp) {
-                        if(resp.message == refresh) {
-                            $("#loader").html(resp.html)
+                        if(resp.message == 'refresh') {
+                            location.reload();
                         } else {
                             if(resp.message == 'fail') {
                                 console.log("fail on create new post!")
@@ -898,19 +890,9 @@ function jQueryLoaded(){
         $animate.addClass('idle');
     }
 
-    if( $('img').length ){
-        $('img').each(function(i){
-            var tempSrc = $(this).attr('src');
-            var srcAppended = path + '../' + tempSrc;
-            $(this).attr('src', srcAppended);
-            if( i == $('img').length -1 ){
-                imagesLoaded();
-            }
-        });
-    }
-    else {
-        imagesLoaded();
-    }
+
+    imagesLoaded();
+
 
     $(window).load(function(){
         $('body').css('opacity',1);
@@ -918,7 +900,7 @@ function jQueryLoaded(){
 
     function imagesLoaded(){
         loadScript( path + "assets/imagesloaded.pkgd.min.js", jqueryColor);
-        loadScript( path + "bootstrap/js/bootstrap.min.js", false);
+        loadScript( path + "assets/bootstrap/js/bootstrap.min.js", false);
     }
 
     function jqueryColor(){
@@ -949,9 +931,10 @@ function jQueryLoaded(){
     }
 
     function loadMap() {
+        console.log('load map-------------------------------------------------------------------')
         var script = document.createElement('script');
         script.type = 'text/javascript';
-        script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDdCSr9vabayz2eiL6j5IrVdzmaz3uCY1Q&callback=initMap';
+        // script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDdCSr9vabayz2eiL6j5IrVdzmaz3uCY1Q';
         document.body.appendChild(script);
     }
 }

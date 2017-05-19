@@ -1,12 +1,4 @@
 var elementID = document.getElementById('item-detail');
-
-if( elementID ){
-    var path = "../../";
-}
-else {
-    path = "../";
-}
-
 var element = document.querySelector('body');
 
 if( hasClass(element, 'external') ){
@@ -19,7 +11,7 @@ else {
 }
 
 function loadJquery(){
-    loadScript( path + "js/jquery-2.1.0.min.js", jQueryLoaded);
+    loadScript( createLink({uri: 'assets/jquery-2.1.0.min.js'}), jQueryLoaded);
 }
 
 function hasClass(element, cls) {
@@ -39,10 +31,9 @@ function loadScript(url, callback)
 
 function loadCss(){
     var cssArray = [
-        path + "fonts/font-awesome.css",
-        "http://fonts.googleapis.com/css?family=Roboto:700,400,300",
-        path + "bootstrap/css/bootstrap.min.css",
-        path + "css/style.css"
+        createLink({uri: 'assets/fonts/font-awesome.css'}), "http://fonts.googleapis.com/css?family=Roboto:700,400,300",
+        createLink({uri: 'assets/bootstrap/css/bootstrap.min.css'}),
+        createLink({uri: 'assets/style.css'})
     ];
     for( var i=0; i<cssArray.length; i++ ){
         var head = document.getElementsByTagName('head')[0];
@@ -52,7 +43,7 @@ function loadCss(){
         link.href = cssArray[i];
         head.appendChild(link);
         if( i == cssArray.length-1 ){
-            loadScript( path + "js/functions.js", loadJquery );
+            loadScript( createLink({uri: 'assets/functions.js'}), loadJquery );
         }
     }
 }

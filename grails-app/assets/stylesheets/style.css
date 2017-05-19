@@ -2579,6 +2579,12 @@ input[type="text"]:active, input[type="text"]:focus, input[type="date"]:active, 
   display: inline-block;
   width: 32%;
 }
+
+.infobox .bullets li {
+  display: inline-block;
+  width: 50%;
+}
+
 #item-detail .person {
   -moz-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.15);
   -webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.15);
