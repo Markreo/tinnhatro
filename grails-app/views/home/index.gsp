@@ -8,16 +8,20 @@
     <asset:link rel="stylesheet" href="fonts/font-awesome.css" type="text/css"/>
     <link href='http://fonts.googleapis.com/css?family=Roboto:700,400,300' rel='stylesheet' type='text/css'>
 
-    <asset:link rel="stylesheet" href="bootstrap/css/bootstrap.css" type="text/css"/>
+    <asset:link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" type="text/css"/>
     <asset:link rel="stylesheet" href="bootstrap-select.min.css" type="text/css"/>
     <asset:link rel="stylesheet" href="owl.carousel.css" type="text/css"/>
     <asset:link rel="stylesheet" href="jquery.nouislider.min.css" type="text/css"/>
     <asset:link rel="stylesheet" href="style.css" type="text/css"/>
     <asset:link rel="stylesheet" href="fileinput.css" type="text/css"/>
+    <asset:link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon"/>
 
     <title>Tin nhà trọ</title>
     <asset:javascript  src="myjavascript.js" />
     <asset:javascript  src="bootbox.min.js" />
+<script>
+    var contextPath = '${request.contextPath}';
+</script>
 
 </head>
 
@@ -32,7 +36,7 @@
                     <ul>
                         <li>
                             <sec:ifLoggedIn>
-                                xin chào <tnt:userInfo field="name"/>!
+                                Xin chào <tnt:userInfo field="name"/>!
                             </li> <li><g:link controller='logout'>Log out</g:link>
                             </sec:ifLoggedIn>
                             <sec:ifNotLoggedIn>

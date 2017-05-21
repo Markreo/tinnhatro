@@ -15,7 +15,6 @@ function drawInfobox(infoboxContent, json, i){
     var tienichContent = '';
     //TODO: có thể tienichs.each để nhanh hơn
     for(j = 0; j < json.data[i].tienich.length; j++) {
-        console.log( json.data[i].tienich[j].name)
         tienichContent += '<li>' + json.data[i].tienich[j].name +'</li>'
     }
 

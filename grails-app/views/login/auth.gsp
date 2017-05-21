@@ -28,7 +28,7 @@
 								<input type="submit" class="btn btn-info btn-block" value="Đăng Nhập">
 							</div>
 							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-2">
-								<a href="${createLink(controller: 'user', action: 'register')}" class="btn btn-info btn-block">Đăng ký</a>
+								<a href="${createLink(controller: 'user', action: 'register')}" class="btn btn-info btn-block" data-expand-width="col-8" data-transition-parent=".content-loader" data-external="true" onclick="event.preventDefault();clickEvents($(this))">Đăng ký</a>
 							</div>
 						</div>
 					</div>

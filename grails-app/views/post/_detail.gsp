@@ -10,6 +10,10 @@
     <asset:javascript src="myjavascript.js"/>
 
     <title>${post.tieude}</title>
+    <script>
+        var contextPath = '${request.contextPath}';
+    </script>
+    <asset:link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon"/>
 </head>
 <body class="external">
 

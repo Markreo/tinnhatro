@@ -21,6 +21,7 @@ class User implements Serializable {
 	String name
 	String phone
 	String email
+	Photo avatar
 
 	Set<Role> getAuthorities() {
 		UserRole.findAllByUser(this)*.role
@@ -46,8 +47,9 @@ class User implements Serializable {
 		password blank: false, password: true
 		username blank: false, unique: true
 		name nullable:false
-		phone nullable: false
-		email nullable: true
+		phone nullable: false, unique: true
+		email nullable: true, unique: true
+		avatar nullable: true
 	}
 
 	static mapping = {

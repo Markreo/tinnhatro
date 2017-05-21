@@ -188,12 +188,14 @@
             showRemove: false,
             showUploadedThumbs: false,
             showCaption: false,
-            maxFileSize: 512,
+            maxFileSize: 1024,
             maxFileCount: 3,
             //allowedFileTypes: ['image', 'video', 'flash'],
             slugCallback: function (filename) {
                 return filename.replace('(', '_').replace(']', '_');
             }
         });
+
+
     });
 </script>

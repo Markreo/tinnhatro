@@ -1,7 +1,6 @@
 /**
  * Created by giapn on 4/16/2017.
  */
-var contextPath = "http://localhost:8080";
 function createLink(params) {
     if (params.hasOwnProperty('uri')) {
         if(params.uri.indexOf('/') !=0){

@@ -7,7 +7,7 @@ import grails.plugin.springsecurity.annotation.Secured
 class HomeController {
 
     def index() {
-        def posts = Post.list([max: 10])
+        def posts = Post.list([max: 100])
         [posts: posts]
     }
 
