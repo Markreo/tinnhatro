@@ -10,4 +10,9 @@ class UserController {
     def create() {
 
     }
+
+    @Secured('permitAll')
+    def register() {
+
+    }
 }
