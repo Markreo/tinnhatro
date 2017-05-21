@@ -857,8 +857,6 @@
     // Load JSON data and create Google Maps
     $.getJSON(jsonPath)
         .done(function(json) {
-            console.log('done');
-            console.log(json)
             createHomepageGoogleMap(_latitude,_longitude,json);
         })
         .fail(function( jqxhr, textStatus, error ) {

@@ -28,7 +28,9 @@
                 <article class="animate move_from_bottom_short">
                     <div class="gallery">
                         <div class="image">
-                            <tnt:image filename="${post.image.first()}"/>
+                            <g:if test="${post.image}">
+                                <img src="${createLink(controller: 'media', action: 'getImage', id: post.image.first()?.id)}"/>
+                            </g:if>
                         </div>
                     </div>
                 </article>

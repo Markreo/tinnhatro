@@ -1,9 +1,15 @@
 package com.tinnhatro
 
-import grails.converters.JSON
-
 class Post {
-    def grailsLinkGenerator
+    enum TrangThai{
+        HIEULUC(0),
+        HETHAN(1),
+        XOA(2)
+
+        int id
+        TrangThai(id) {this.id = id}
+    }
+
     enum Loai {
         PHONGTRO(1, "Nhà trọ, phòng trọ"),
         NGUYENCAN(2, "Nhà nguyên căn"),
@@ -17,8 +23,10 @@ class Post {
     }
 
     static belongsTo = [user: User]
-    static hasMany = [image: String, tienich: Utilities]
+    static hasMany = [image: Photo, tienich: Utilities]
 
+
+    TrangThai trangThai = TrangThai.HIEULUC
     String tieude
     Loai loai = Loai.PHONGTRO
     String diachi
@@ -35,6 +43,9 @@ class Post {
 
     String namxay
     String doituong
+
+    int rating = 100
+    int star
 
     Date dateCreated
     Date lastUpdated
@@ -57,25 +68,28 @@ class Post {
         doituong nullable: true
         latitude nullable: true
         longitude nullable: true
+        rating nullable: true
+        trangThai nullable: true
+        star nullable: true
     }
 
     static mapping = {
         mota type: 'text'
     }
 
-    JSON toJSON() {
+    Map toJSON() {
         return [id: this.id,
                 tieude: this.tieude,
-                location: this.diachi,
+                diachi: this.diachi,
                 latitude: this.latitude,
                 longitude: this.longitude,
-                url: "/post/" + this.id,
-                type: this.loai.name,
-                type_icon: "",
-                rating: 4,
-                gallery: image.toList(),
-                price: this.gia,
-                overview: tienich?.name,
-                description: this.mota] as JSON
+                loai: this.loai.name,
+                rating: this.rating,
+                image: image.toList()?.id,
+                gia: this.gia,
+                tienich: tienich?.name,
+                mota: this.mota.subSequence(0, this.mota.length() < 255 ? this.mota.length() : 255),
+                dateCreated: this.dateCreated.format('dd/MM/yyyy HH:mm'),
+                lastUpdated: lastUpdated.format('dd/MM/yyyy: HH:mm')]
     }
 }

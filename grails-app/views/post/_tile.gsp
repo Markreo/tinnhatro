@@ -3,7 +3,7 @@
         <div class="image">
             <div class="price average-color"><span><g:formatNumber number="${post.gia}" format="###,###,###"/> đ</span></div>
             <g:if test="${post.image}">
-                <tnt:image filename="${post.image.first()}"/>
+                <img src="${createLink(controller: 'media', action: 'getImage', id: post.image.first()?.id)}"/>
             </g:if>
             <g:else>
                 <asset:image src="default-item.png"/>

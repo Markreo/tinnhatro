@@ -29,10 +29,7 @@ function drawInfobox(infoboxContent, json, i){
                 '<a href="'+ createLink({controller: 'post', action: 'detail', id: json.data[i].id}) +'" data-expand-width="col-9" data-transition-parent=".content-loader" data-external="true">' +
                 '<div class="image">' +
                     '<div class="price average-color"><span>' + json.data[i].gia.formatMoney(0, '.', ',') + ' đ</span></div>' +
-                    // '<tnt:image filename="' + gallery + '"/>' +
-                    // '<img src="'+ createLink({uri: gallery}) +'" alt="">' +
-
-                        '<img src="' + urls[Math.floor(Math.random()*4)]+ '"/> ' +
+                    '<img src="' + createLink({controller: 'media', action: 'getImage', id: json.data[i].image[0]}) + '"/> ' +
                 '</div>' +
                 '<header class="average-color">' +
                     '<h1 class="animate move_from_top_short">'+ json.data[i].tieude +'</h1>' +
@@ -43,7 +40,7 @@ function drawInfobox(infoboxContent, json, i){
         '<div class="right">' +
             '<article class="animate move_from_top_short">' +
                 '<h3>Mô tả</h3>' +
-                '<p>' +  json.data[i].mota+ '</p>' +
+                '<p>' +  json.data[i].mota+'...</p>' +
             '</article>' +
             '<article class="animate move_from_top_short">' +
             '<h3 style="display: inline-block">Ngày đăng:  </h3>' +
@@ -56,6 +53,5 @@ function drawInfobox(infoboxContent, json, i){
             tienichContent +
         '</div>' +
     '</div>';
-
     return ibContent;
 }

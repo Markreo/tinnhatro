@@ -20,13 +20,11 @@ class HomeController {
     }
 
     def getJsonFile() {
-        def data = [:]
         def postData = []
-        def posts = Post.list([max: 10])
+        def posts = Post.list()
         posts.each {
             postData.add(it.toJSON())
         }
-        data << [data: posts]
-        render(data as JSON)
+        render([data: postData] as JSON)
     }
-}
+    }

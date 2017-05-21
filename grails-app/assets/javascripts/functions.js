@@ -579,7 +579,7 @@ function createHomepageGoogleMap(_latitude,_longitude,json){
         }
         var mapCenter = new google.maps.LatLng(_latitude,_longitude);
         var mapOptions = {
-            zoom: 15,
+            zoom: 13,
             center: mapCenter,
             disableDefaultUI: false,
             scrollwheel: false,
@@ -646,6 +646,10 @@ function createHomepageGoogleMap(_latitude,_longitude,json){
             };
 
             // Infobox HTML element
+
+            /*$.post(createLink({controller: 'post', action: 'getInfobox'}), {id: json.data[i].id}, function() {
+
+            });*/
 
             infoboxContent.innerHTML = drawInfobox(infoboxContent, json, i);
 

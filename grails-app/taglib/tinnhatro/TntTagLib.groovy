@@ -19,7 +19,7 @@ class TntTagLib {
 
     def image = { attrs, body->
         try {
-            File f = new File(attrs.filename);		//change path of image according to you
+            File f = new File(attrs.filename ?: 'D:\\Project\\tinnhatro\\grails-app\\assets\\images\\default-item-blue.png  ');		//change path of image according to you
             if (f.exists()) {
                 FileInputStream fis = new FileInputStream(f);
                 def byteArray = new byte[(int)f.length()];

@@ -3,7 +3,6 @@ package com.tinnhatro
 import grails.converters.JSON
 import grails.plugin.springsecurity.annotation.Secured
 import grails.util.Holders
-import org.springframework.util.IdGenerator
 import org.springframework.web.multipart.support.StandardMultipartHttpServletRequest
 
 @Secured(["ROLE_SYSADMIN","ROLE_ADMIN","ROLE_CHOTHUE"])
@@ -32,7 +31,7 @@ class PostController {
                 folder.mkdirs()
                 File f = new File(Holders.config.folder.tmp + "/${new Date().format('yyyy/MM/dd')}/${System.currentTimeMillis()}_" + file.getOriginalFilename())
                 file.transferTo(f)
-                post.addToImage(f.path)
+                post.addToImage(new Photo(path: f.path))
             }
             post.save(flush: true)
             if((springSecurityService.currentUser as User).isAdmin()) {
@@ -62,4 +61,15 @@ class PostController {
             response.sendError(404)
         }
     }
+
+    @Secured('permitAll')
+    def getInforbox(long id) {
+        Post post = Post.get(id)
+        if(post) {
+            render(template: 'getInforbox', model: [post: post])
+        } else {
+            response.sendError(404)
+        }
+    }
+
 }
