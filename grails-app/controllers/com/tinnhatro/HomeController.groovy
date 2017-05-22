@@ -7,7 +7,7 @@ import grails.plugin.springsecurity.annotation.Secured
 class HomeController {
 
     def index() {
-        def posts = Post.list([max: 100])
+        def posts = Post.list([max: 10])
         [posts: posts]
     }
 
@@ -19,12 +19,19 @@ class HomeController {
 
     }
 
+    // http://12333:/media/image/<i>
+    def image(String id) {
+        // out content type image
+        //response.outputStream << image.out
+    }
+
     def getJsonFile() {
         def postData = []
-        def posts = Post.list()
+        def posts = Post.list([max: 10])
         posts.each {
+            println it.toJSON()
             postData.add(it.toJSON())
         }
         render([data: postData] as JSON)
     }
-    }
+}
