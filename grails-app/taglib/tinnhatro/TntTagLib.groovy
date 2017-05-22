@@ -1,5 +1,6 @@
 package tinnhatro
 
+import com.tinnhatro.Photo
 import com.tinnhatro.User
 import org.apache.commons.codec.binary.Base64
 
@@ -19,14 +20,18 @@ class TntTagLib {
 
     def image = { attrs, body->
         try {
-            File f = new File(attrs.filename ?: 'D:\\Project\\tinnhatro\\grails-app\\assets\\images\\default-item-blue.png  ');		//change path of image according to you
-            if (f.exists()) {
-                FileInputStream fis = new FileInputStream(f);
-                def byteArray = new byte[(int)f.length()];
+            String path = attrs.filename
+            if(path) {
+                File file = new File(path)
+                if (!file.length()) {
+                    file = new File('D:\\Project\\tinnhatro\\grails-app\\assets\\images\\default-item.png')
+                }
+                FileInputStream fis = new FileInputStream(file);
+                def byteArray = new byte[(int) file.length()];
                 fis.read(byteArray);
 
                 String imageString = Base64.encodeBase64String(byteArray);
-                out << "<img src='data:image/jpeg;base64,${imageString}' id='image${attrs.id}'/>"
+                out << "<img src='data:image/jpeg;base64,${imageString}' id='${attrs.id}' width='${attrs.width ?: ''}' class='${attrs.class ?: ''}'/>"
             }
         } catch (ex) {
 

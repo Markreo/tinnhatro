@@ -22,19 +22,19 @@
         <div class="col-md-8">
             <div class="inner">
                 <div class="items-switch">
-                    <a href="#" class="">
+                    <a href="javascript:void(0)" onclick="left()">
                         <asset:image src="arrow-left.png"/>
                     </a>
-                    <a href="#" class="">
-                        <asset:image src="arrow-right.png"/>
+                    <a href="javascript:void(0)">
+                        <asset:image src="arrow-right.png" onclick="right()"/>
                     </a>
                 </div>
                 <article class="animate move_from_bottom_short">
                     <div class="gallery">
-                        <div class="image">
-                            <g:if test="${post.image}">
-                                <img src="${createLink(controller: 'media', action: 'getImage', id: post.image.first()?.id)}"/>
-                            </g:if>
+                        <div class="image" id="viewImage">
+                            <g:each in="${post.image}" var="img" status="i">
+                                <tnt:image filename="${img.path}" id="${i}" class="${i == 0 ? 'active' : ''}"/>
+                            </g:each>
                         </div>
                     </div>
                 </article>
@@ -48,9 +48,11 @@
                 <article class="sidebar">
                     <div class="person animate move_from_bottom_short">
                         <div class="inner average-color">
-                            <figure class="person-image">
-                                <asset:image src="person-01.jpg" width="100px"/>
-                            </figure>
+                            <g:if test="${post.user.avatar}">
+                                <figure class="person-image">
+                                    <tnt:image filename="${post.user.avatar}" width="100px"/>
+                                </figure>
+                            </g:if>
                             <header>${post.user.name}</header>
                             <a >${post.user.phone}</a>
                             <a href="mailto:catherine.brown@example.com">${post.user.email}</a>

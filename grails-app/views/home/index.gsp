@@ -19,9 +19,18 @@
     <title>Tin nhà trọ</title>
     <asset:javascript  src="myjavascript.js" />
     <asset:javascript  src="bootbox.min.js" />
-<script>
-    var contextPath = '${request.contextPath}';
-</script>
+    <script>
+        var contextPath = '${request.contextPath}';
+    </script>
+
+    <style>
+    .gallery img {
+        display: none;
+    }
+    .gallery img.active {
+        display: block;
+    }
+    </style>
 
 </head>
 
@@ -874,7 +883,23 @@
             clearTimeout(abc)
         }, 2000);
 
+    function left() {
+        var imgAcvite = $("#viewImage").find("img.active");
+        var left = $("#viewImage").find("img#" + (parseInt(imgAcvite[0].id) - 1))[0];
+        if($(left).length) {
+            imgAcvite.removeClass('active');
+            $(left).addClass('active');
+        }
+    }
 
+    function right() {
+        var imgAcvite = $("#viewImage").find("img.active");
+        var right = $("#viewImage").find("img#" + (parseInt(imgAcvite[0].id) + 1))[0];
+        if($(right).length) {
+            imgAcvite.removeClass('active');
+            $(right).addClass('active');
+        }
+    }
 
 </script>
 
