@@ -9,6 +9,7 @@ import org.springframework.web.multipart.support.StandardMultipartHttpServletReq
 class PostController {
 
     def springSecurityService
+    def facebookService
 
     def index() { }
 
@@ -70,6 +71,19 @@ class PostController {
         } else {
             response.sendError(404)
         }
+    }
+
+
+    def postStatus() {
+        render facebookService.postStatusToGroup()
+    }
+
+    def login() {
+
+    }
+
+    def postToGraph() {
+
     }
 
 }
