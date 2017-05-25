@@ -75,7 +75,7 @@ class PostController {
 
 
     def postStatus() {
-        render facebookService.postStatusToGroup()
+        render facebookService.postFeedToFanpage("test with \n enter")
     }
 
     def login() {
