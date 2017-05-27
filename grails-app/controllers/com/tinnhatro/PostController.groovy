@@ -75,7 +75,8 @@ class PostController {
 
 
     def postStatus() {
-        render facebookService.postFeedToFanpage("test with \n enter")
+        render facebookService.postFeedToFanpage("test with \n enter\n post này được post lên fanpage và groupp để test")
+        render facebookService.postFeedToGroup("test with \n enter\n post này được post lên fanpage và groupp để test")
     }
 
     def login() {
