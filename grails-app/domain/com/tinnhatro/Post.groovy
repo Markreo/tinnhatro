@@ -92,4 +92,12 @@ class Post {
                 dateCreated: this.dateCreated.format('dd/MM/yyyy HH:mm'),
                 lastUpdated: lastUpdated.format('dd/MM/yyyy: HH:mm')]
     }
+
+    Map getFeed() {
+        String tieni = ""
+        this.tienich.each {
+            tieni = tieni + " \t- " + it + "\n"
+        }
+        return [message: this.tieude.toUpperCase() + "\n" + this.mota +  "\n" + "* Địa chỉ: " + this.diachi + "\n" + tieni, image: this.image.toList()]
+    }
 }

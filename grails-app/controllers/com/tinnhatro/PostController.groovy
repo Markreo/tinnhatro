@@ -87,4 +87,8 @@ class PostController {
 
     }
 
+    def postPhotoToGroup() {
+        render facebookService.postPhotoToGroup(Post.get(15))
+    }
+
 }
