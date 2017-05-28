@@ -83,4 +83,8 @@ class PostController {
     def login() {
 
     }
+
+    def testPrice() {
+        render facebookService.testPrice()
+    }
 }

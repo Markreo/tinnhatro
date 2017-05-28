@@ -38,4 +38,22 @@ class FacebookService {
         );
         return response.getId()
     }
+
+
+    def testPrice() {
+        FacebookClient fbClient = new DefaultFacebookClient(longAccessToken)
+
+        FacebookType response = fbClient.publish(groupId + "/feed",
+                FacebookType.class,
+                Parameter.with("message",
+                        "+ Nhà trọ giá nước: 100.000đ/người\n" +
+                        "+ Rác và dọn vệ sinh hành lang: 40.000đ/phòng/tháng.\n" +
+                        "+ Giữ xe máy: 150.000đ/chiếc xe số/tháng, 200.000/chiếc xe ga/tháng.\n" +
+                        "+ Thang máy: 100.000đ/người.\n" +
+                        "+ Giờ giấc tự do.\n" +
+                        "+ Hợp đồng kí tối thiểu 6 tháng, đặt cọc 5.000.000đ +1 tháng tiền phòng.\n" +
+                        "* Địa chỉ: 300 Nguyễn Đình Chiểu, Hồ Chí Minh, Việt Nam\n" )
+        )
+        return response.getId()
+    }
 }

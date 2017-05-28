@@ -14,6 +14,41 @@
         var contextPath = '${request.contextPath}';
     </script>
     <asset:link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon"/>
+    <g:if test="${!isAjax}">
+        <asset:stylesheet src="/fonts/font-awesome.css" type="text/css"/>
+        <asset:stylesheet src="bootstrap.min.css" type="text/css"/>
+        <asset:stylesheet src="style.csss" type="text/css"/>
+        <asset:javascript src="functions.js"/>
+
+        <style>
+        .gallery img {
+            display: none;
+        }
+        .gallery img.active {
+            display: block;
+        }
+        </style>
+        <script>
+            function left() {
+                var imgAcvite = $("#viewImage").find("img.active");
+                var left = $("#viewImage").find("img#" + (parseInt(imgAcvite[0].id) - 1))[0];
+                if($(left).length) {
+                    imgAcvite.removeClass('active');
+                    $(left).addClass('active');
+                }
+            }
+
+            function right() {
+                var imgAcvite = $("#viewImage").find("img.active");
+                var right = $("#viewImage").find("img#" + (parseInt(imgAcvite[0].id) + 1))[0];
+                if($(right).length) {
+                    imgAcvite.removeClass('active');
+                    $(right).addClass('active');
+                }
+            }
+        </script>
+    </g:if>
+
 </head>
 <body class="external">
 
@@ -21,14 +56,16 @@
     <div class="row">
         <div class="col-md-8">
             <div class="inner">
-                <div class="items-switch">
-                    <a href="javascript:void(0)" onclick="left()">
-                        <asset:image src="arrow-left.png"/>
-                    </a>
-                    <a href="javascript:void(0)">
-                        <asset:image src="arrow-right.png" onclick="right()"/>
-                    </a>
-                </div>
+                <g:if test="${post.image.size() > 1}">
+                    <div class="items-switch">
+                        <a href="javascript:void(0)" onclick="left()">
+                            <asset:image src="arrow-left.png"/>
+                        </a>
+                        <a href="javascript:void(0)">
+                            <asset:image src="arrow-right.png" onclick="right()"/>
+                        </a>
+                    </div>
+                </g:if>
                 <article class="animate move_from_bottom_short">
                     <div class="gallery">
                         <div class="image" id="viewImage">
@@ -131,8 +168,10 @@
     <!--end .row-->
 </div>
 <!--end #item-detail-->
-
-%{--<script>
+<g:if test="${!isAjax}">
+    <asset:javascript src="external.js"/>
+</g:if>
+<script>
     var _latitude = ${post.latitude};
     var _longitude = ${post.longitude};
     var draggableMarker = false;
@@ -140,13 +179,15 @@
     var element = document.querySelector('body');
 
     if( hasClass(element, 'external') ){
+        console.log("hasClass")
         var head = document.getElementsByTagName('head')[0];
         var script = document.createElement('script');
         script.type = 'text/javascript';
         script.src = createLink({uri: 'assets/external.js'});
-        head.appendChild(script);
+//        head.appendChild(script);
     }
     else {
+        console.log('no class external')
         simpleMap(_latitude, _longitude,draggableMarker, scrollwheel);
         rating();
         averageColor( $('.content-container') );
@@ -156,8 +197,7 @@
         return (' ' + element.className + ' ').indexOf(' ' + cls + ' ') > -1;
     }
 
-</script>--}%
-
+</script>
 
 </body>
 </html>
