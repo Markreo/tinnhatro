@@ -87,4 +87,9 @@ class PostController {
     def testPrice() {
         render facebookService.testPrice()
     }
+
+    def getFeed() {
+        facebookService.getFeed()
+        render("asdas")
+    }
 }

@@ -41,4 +41,9 @@ class TntTagLib {
     def breadcrumbs = { attrs, body ->
         out << "${g.render(template: '/layouts/breadcrumbs', model: [current: attrs.current, link: attrs.link, title: attrs.title])}"
     }
+
+    def facebook = { attrs, body->
+        def feedId = attrs.feed
+
+    }
 }

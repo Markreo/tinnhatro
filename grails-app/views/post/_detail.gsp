@@ -139,22 +139,43 @@
                     <div id="map-simple"></div>
                 </article>
                 <!--end Map-->
-                <article>
-                    <h3>Reviews</h3>
-                    <div class="review block">
-                        <figure class="person-image">
-                            <asset:image src="person-01.jpg" width="100px"/>
-                        </figure>
-                        <header>Catherine Brown</header>
-                        <div class="rating" data-rating="4"></div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vestibulum,
-                        sem ut sollicitudin consectetur, augue diam ornare massa, ac vehicula leo
-                        turpis eget purus. Nunc pellentesque vestibulum mauris, eget suscipit mauris
-                        imperdiet vel. Nulla et massa metus.
-                        </p>
-                    </div>
-                </article>
-                <!--end Reviews-->
+                <g:if test="${post.facebookId}">
+                    <script>
+                        window.fbAsyncInit = function() {
+                            FB.init({
+                                appId      : '1760086690683134',
+                                cookie     : true,  // enable cookies to allow the server to access
+                                                    // the session
+                                xfbml      : true,  // parse social plugins on this page
+                                version    : 'v2.8' // use graph api version 2.8
+                            });
+
+
+
+                        };
+
+                        // Load the SDK asynchronously
+                        (function(d, s, id) {
+                            var js, fjs = d.getElementsByTagName(s)[0];
+                            if (d.getElementById(id)) return;
+                            js = d.createElement(s); js.id = id;
+                            js.src = "//connect.facebook.net/en_US/sdk.js";
+                            fjs.parentNode.insertBefore(js, fjs);
+                        }(document, 'script', 'facebook-jssdk'));
+
+
+                    </script>
+                    <article>
+                        <h3>Reviews</h3>
+                        <div class="review block">
+                            <div class="fb-comments" data-href="https://www.facebook.com/655549507972910/posts/${post.facebookId}" data-numposts="5" data-width="475"></div>
+                            <tnt:facebook feed="${post.facebookId}"/>
+                        </div>
+
+
+                    </article>
+                    <!--end Reviews-->
+                </g:if>
                 <sec:ifAnyGranted roles="ROLE_CHOTHUE,ROLE_SYSADMIN">
                 <article class="center" id="test">
                     <a href="#" class="btn btn-circle btn-default btn-lg"><i class="fa fa-plus"></i></a>

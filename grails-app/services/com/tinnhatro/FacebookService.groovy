@@ -1,6 +1,7 @@
 package com.tinnhatro
 
 import com.restfb.BinaryAttachment
+import com.restfb.Connection
 import com.restfb.DefaultFacebookClient
 
 import com.restfb.FacebookClient
@@ -55,5 +56,17 @@ class FacebookService {
                         "* Địa chỉ: 300 Nguyễn Đình Chiểu, Hồ Chí Minh, Việt Nam\n" )
         )
         return response.getId()
+    }
+
+    def getFeed(String id = '101678373762384') {
+        FacebookClient fbClient = new DefaultFacebookClient(longAccessToken)
+        com.restfb.types.Post post = fbClient.fetchObject("801952856622339", com.restfb.types.Post.class);
+        println("Post: " + post.getId() + " : " + post.getMessage());
+       /* for (Comment comment : commentData) {
+            com.restfb.types.FacebookComment fbComment = FacebookComment.create(null, comment);
+            println("fbComment: {}", fbComment);
+            println("CommentMessage : {} ", fbComment.getMessage());
+        }*/
+
     }
 }
