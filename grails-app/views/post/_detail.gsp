@@ -132,7 +132,7 @@
 </div>
 <!--end #item-detail-->
 
-<script>
+%{--<script>
     var _latitude = ${post.latitude};
     var _longitude = ${post.longitude};
     var draggableMarker = false;
@@ -156,7 +156,7 @@
         return (' ' + element.className + ' ').indexOf(' ' + cls + ' ') > -1;
     }
 
-</script>
+</script>--}%
 
 
 </body>

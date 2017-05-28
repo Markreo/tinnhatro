@@ -1,51 +1,33 @@
-<!doctype html>
-<html lang="en" class="no-js">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <title>
-        <g:layoutTitle default="Grails"/>
-    </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+	<title><g:layoutTitle default="Quản lí nhà trọ"></g:layoutTitle></title>
+	%{--<asset:link rel="icon" href="favicon.ico" type="image/x-ico" />--}%
+	<asset:stylesheet src="application.css"/>
 
-    <asset:stylesheet src="application.css"/>
-
-    <g:layoutHead/>
+	<link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,300" rel="stylesheet" type="text/css">
+	<asset:javascript src="application.js"/>
+	<asset:javascript src="spring-websocket" />
+	<g:layoutHead/>
 </head>
+
 <body>
-
-    <div class="navbar navbar-default navbar-static-top" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="/#">
-                    <i class="fa grails-icon">
-                        <asset:image src="grails-cupsonly-logo-white.svg"/>
-                    </i> Grails
-                </a>
-            </div>
-            <div class="navbar-collapse collapse" aria-expanded="false" style="height: 0.8px;">
-                <ul class="nav navbar-nav navbar-right">
-                    <g:pageProperty name="page.nav" />
-                </ul>
-            </div>
-        </div>
-    </div>
-
-    <g:layoutBody/>
-
-    <div class="footer" role="contentinfo"></div>
-
-    <div id="spinner" class="spinner" style="display:none;">
-        <g:message code="spinner.alt" default="Loading&hellip;"/>
-    </div>
-
-    <asset:javascript src="application.js"/>
-
+<div class="loading-container">
+	<div class="loader"></div>
+</div>
+<g:render template="/layouts/navbar"/>
+<div class="main-container container-fluid">
+	<div class="page-container ">
+		<g:render template="/layouts/sidebar"/>
+		<g:render template="/layouts/chatbar"/>
+		<div class="page-content">
+			<g:layoutBody/>
+		</div>
+	</div>
+</div>
+<asset:javascript src="beyond.min.js"/>
+<asset:javascript src="chat.js" />
 </body>
 </html>

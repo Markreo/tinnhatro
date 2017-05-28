@@ -8,6 +8,7 @@ class AdminController {
     def index() { }
 
     def users() {
+        println("here")
     }
 
     def post() {

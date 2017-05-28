@@ -34,6 +34,7 @@ class PostController {
                 file.transferTo(f)
                 post.addToImage(new Photo(path: f.path))
             }
+            post.facebookId = facebookService.postPhotoToGroup(post, "${g.createLink(controller: 'post', action: 'detail', id: post.id, absolute: true)}")
             post.save(flush: true)
             if((springSecurityService.currentUser as User).isAdmin()) {
                 render([message: 'refresh', html: g.render(template: 'createPost')] as JSON)
@@ -57,7 +58,7 @@ class PostController {
     def detail(long id) {
         Post post = Post.get(id)
         if(post) {
-            render(template: 'detail', model: [post: post])
+            render(template: 'detail', model: [post: post, isAjax: request.xhr])
         } else {
             response.sendError(404)
         }
@@ -82,13 +83,4 @@ class PostController {
     def login() {
 
     }
-
-    def postToGraph() {
-
-    }
-
-    def postPhotoToGroup() {
-        render facebookService.postPhotoToGroup(Post.get(15))
-    }
-
 }

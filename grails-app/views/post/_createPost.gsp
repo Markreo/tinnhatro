@@ -21,7 +21,7 @@
                 </div>
                 <!--end .row-->
                 <div class="form-group">
-                    <textarea name="mota" class="form-control" rows="4" id="description" placeholder="Mô tả"></textarea>
+                    <textarea name="mota" class="form-control" rows="6" id="description" placeholder="Mô tả"></textarea>
                 </div>
                 <!--end textarea-->
             </article>

@@ -47,6 +47,8 @@ class Post {
     int rating = 100
     int star
 
+    String facebookId
+
     Date dateCreated
     Date lastUpdated
 
@@ -71,6 +73,7 @@ class Post {
         rating nullable: true
         trangThai nullable: true
         star nullable: true
+        facebookId nullable: true
     }
 
     static mapping = {

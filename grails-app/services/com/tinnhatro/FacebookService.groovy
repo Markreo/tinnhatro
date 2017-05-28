@@ -20,41 +20,22 @@ class FacebookService {
 
     private String accessToken = ""
 
-    def postFeedToGroup(String message) {
-        println("longAccessToken: " + longAccessToken)
-        FacebookClient fbClient = new DefaultFacebookClient(longAccessToken)
-        FacebookType response = fbClient.publish(groupId + "/feed", FacebookType.class, Parameter.with("message", message));
-        return "fb.com/" + response.getId()
+    def testTagA() {
+
     }
 
-    def postFeedToFanpage(String message) {
-        println("longAccessToken: " + longAccessToken)
-        FacebookClient fbClient = new DefaultFacebookClient(longAccessToken)
-        FacebookType response = fbClient.publish(fanPageId + "/feed", FacebookType.class, Parameter.with("message", message));
-        return "fb.com/" + response.getId()
-    }
-
-    def postPhotoToGroup(Post post) {
+    def postPhotoToGroup(Post post, String link = '') {
         String tieni = ""
         post.tienich.each {
-            tieni = tieni + " \t- " + it + "\n"
+            tieni = tieni + " \t- " + it.name + "\n"
         }
         FacebookClient fbClient = new DefaultFacebookClient(longAccessToken)
 
         FacebookType response = fbClient.publish(groupId + (post.image ? "/photos" : "/feed"),
                 FacebookType.class,
                 post.image ? BinaryAttachment.with("file-name", new File(post.image.first().path).bytes) : null,
-                Parameter.with("message", post.tieude.toUpperCase() + "\n" + post.mota +  "\n" + "* Địa chỉ: " + post.diachi + "\n" + tieni)
+                Parameter.with("message", post.tieude.toUpperCase() + "\n" + post.mota +  "\n" + "* Địa chỉ: " + post.diachi + "\n" + tieni + "\n" + link)
         );
-        return "fb.com/" + response.getId()
-    }
-
-    def getAccessToken() {
-        AccessToken access_token = new DefaultFacebookClient().obtainAppAccessToken(appId, appSecret)
-        this.accessToken = access_token.getAccessToken();
-    }
-
-    def post(Post post) {
-
+        return response.getId()
     }
 }
