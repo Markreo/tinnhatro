@@ -1,5 +1,8 @@
 package com.tinnhatro
 
+import groovy.transform.ToString
+
+@ToString
 class Post {
     enum TrangThai{
         HIEULUC(0),

@@ -57,6 +57,7 @@ dependencies {
     compile 'org.grails.plugins:ajax-tags:1.0.0'
     compile group: 'org.postgresql', name: 'postgresql', version: '9.4.1211'
     compile 'org.grails.plugins:facebook-sdk:2.7.0'
+    compile 'org.grails:grails-datastore-rest-client:5.0.0.RC2'
 }
 
 bootRun {

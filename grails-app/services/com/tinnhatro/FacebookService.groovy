@@ -35,7 +35,22 @@ class FacebookService {
         FacebookType response = fbClient.publish(groupId + (post.image ? "/photos" : "/feed"),
                 FacebookType.class,
                 post.image ? BinaryAttachment.with("file-name", new File(post.image.first().path).bytes) : null,
-                Parameter.with("message", post.tieude.toUpperCase() + "\n" + post.mota +  "\n" + "* Địa chỉ: " + post.diachi + "\n" + tieni + "\n" + link)
+                Parameter.with("message", post.tieude.toUpperCase() + "\n" + post.mota +  "\n" + "* Địa chỉ: " + post.diachi + "\n" + tieni + "\n<a>" + link +"</a>")
+        );
+        return response.getId()
+    }
+
+    def postPhotoToPage(Post post, String link = '') {
+        String tieni = ""
+        post.tienich.each {
+            tieni = tieni + " \t- " + it.name + "\n"
+        }
+        FacebookClient fbClient = new DefaultFacebookClient(longAccessToken)
+
+        FacebookType response = fbClient.publish(groupId + (post.image ? "/photos" : "/feed"),
+                FacebookType.class,
+                post.image ? BinaryAttachment.with("file-name", new File(post.image.first().path).bytes) : null,
+                Parameter.with("message", post.tieude.toUpperCase() + "\n" + post.mota +  "\n" + "* Địa chỉ: " + post.diachi + "\n" + tieni + "\n<a>" + link +"</a>")
         );
         return response.getId()
     }
