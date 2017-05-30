@@ -77,7 +77,7 @@
                             đối tượng
                         </th>
                         <th>
-                            rating
+                            rate
                         </th>
                     </tr>
                 </thead>

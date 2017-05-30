@@ -46,6 +46,7 @@ class Post {
 
     String namxay
     String doituong
+    String source
 
     int rating = 100
     int star
@@ -77,6 +78,7 @@ class Post {
         trangThai nullable: true
         star nullable: true
         facebookId nullable: true
+        source nullable: true
     }
 
     static mapping = {
