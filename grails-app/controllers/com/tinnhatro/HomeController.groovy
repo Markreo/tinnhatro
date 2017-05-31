@@ -37,9 +37,26 @@ class HomeController {
 
     }
 
+
+
     def getJsonFile() {
+        println("parmas: " + params)
+        def types = params.getList("type[]")
         def postData = []
-        def posts = Post.list()
+        def posts = Post.createCriteria().list() {
+            if(types) {
+                def loais = []
+                types.each {
+                    loais.add(Post.Loai.valueOf(it))
+                }
+                'in'('loai', loais)
+            }
+            if(params.min) {
+                println(params.getDouble("min")?.longValue())
+                println(params.getDouble("max")?.longValue())
+                between('gia', params.getDouble("min")?.longValue(), params.getDouble("max")?.longValue())
+            }
+        }
         posts.each {
             postData.add(it.toJSON())
         }
@@ -69,7 +86,7 @@ class HomeController {
 
 
     def func() {
-        String url = "https://mystay.vn/motels/search?searching=&hotel_code=&city_code=&address_code=&price=500000%2C50000000&checkin=01%2F06%2F2017&adults=1&child=0"
+        String url = "https://mystay.vn/motels/search/6?searching=&price=500000%2C50000000&checkin=03%2F06%2F2017&adults=1&child=0"
         Document document = Jsoup.connect(url).get();
         Elements itemlabel3 = document.select(".itemlabel3")
         def titles = itemlabel3.select("a b")*.text()
@@ -140,6 +157,17 @@ class HomeController {
             ImageIO.write(f, "jpg", image)
         } catch (IOException e) {
         }
+
+    }
+
+    def about() {
+    }
+
+    def FAQ(){
+
+    }
+
+    def contact() {
 
     }
 }
