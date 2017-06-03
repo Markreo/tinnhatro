@@ -12,20 +12,13 @@
         </div>
         <div class="item-content">
             <header class="average-color">
-                <h2>${post.diachi}</h2>
-                <h3>${post.loai.name}</h3>
+                <h2>${post.tieude} - <span style="opacity: 0.6;font-size: 12px;font-weight: normal;margin: 0;">${post.loai.name}</span></h2>
+                <h3 style="font-size: 13px">${post.diachi}</h3>
             </header>
-            <footer>
-                <dl>
-                    <dt>Bathrooms</dt>
-                    <dd>1</dd>
-                    <dt>Bedrooms</dt>
-                    <dd>2</dd>
-                    <dt>Area</dt>
-                    <dd>165m<sup>2</sup></dd>
-                    <dt>Garages</dt>
-                    <dd>1</dd>
-                </dl>
+            <footer style="padding: 10px">
+                <p style="white-space: pre-line">
+                    ${post.mota.subSequence(0, post.mota.length() < 255 ? post.mota.length() : 255)}...
+                </p>
             </footer>
         </div>
     </div>

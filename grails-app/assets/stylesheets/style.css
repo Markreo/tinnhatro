@@ -732,7 +732,7 @@ ul.bullets li:before {
 .item header {
   background-color: #919191;
   color: #fff;
-  padding: 30px;
+  padding: 20px 15px;
 }
 .item h2 {
   font-size: 16px;

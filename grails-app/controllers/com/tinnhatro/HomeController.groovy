@@ -15,7 +15,7 @@ import java.awt.Image
 import java.awt.image.BufferedImage
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection
@@ -86,79 +86,107 @@ class HomeController {
 
 
     def func() {
-        String url = "https://mystay.vn/motels/search/3?searching=&price=500000%2C50000000&checkin=03%2F06%2F2017&adults=1&child=0"
-        Document document = Jsoup.connect(url).get();
-        Elements itemlabel3 = document.select(".itemlabel3")
-        def titles = itemlabel3.select("a b")*.text()
-        def addresss = itemlabel3.select("a.go-right")
-        def latitudes = []
-        def longitudes = []
-        def address = addresss*.text()
-        def linksArr = (addresss)*.attr('onclick')
-        linksArr*.split("/").each {
-            latitudes.add(it[5])
-            longitudes.add(it[6])
-        }
+        int page = 1
+        while (page < 10) {
+            String url = "https://mystay.vn/motels/search/${page}?searching=&price=500000%2C50000000&checkin=03%2F06%2F2017&adults=1&child=0"
+            render("process " + url + "</br>")
+            Document document = Jsoup.connect(url).get();
+            Elements itemlabel3 = document.select(".itemlabel3")
+            def titles = itemlabel3.select("a b")*.text()
+            def addresss = itemlabel3.select("a.go-right")
+            def latitudes = []
+            def longitudes = []
+            def address = addresss*.text()
+            def linksArr = (addresss)*.attr('onclick')
+            linksArr*.split("/").each {
+                latitudes.add(it[5])
+                longitudes.add(it[6])
+            }
 
-        def arrTienichs = []
-        itemlabel3.each { item->
-            def tienIchs = item.select(".facilities_item div")
-            arrTienichs.add(tienIchs*.text())
-        }
+            def arrTienichs = []
+            itemlabel3.each { item->
+                def tienIchs = item.select(".facilities_item div")
+                arrTienichs.add(tienIchs*.text())
+            }
 
-        def gias = itemlabel3.select("span.green.size18 b")*.text()*.replaceAll(",", '')*.replaceAll(" đ", '')
-        def links = itemlabel3.select("h4 a")*.attr("abs:href")
-        ArrayList<String> motas = []
-        links.each {link->
-            Document doc = Jsoup.connect(link).get()
-            def moTaAndChinhSach = doc.select(".go-right > .panel.panel-default p")*.text()
-            motas.add(moTaAndChinhSach[0].replace("+", "\n+") + "\n" + moTaAndChinhSach[1].replace("+", "\n+"))
-        }
+            def gias = itemlabel3.select("span.green.size18 b")*.text()*.replaceAll(",", '')*.replaceAll(" đ", '')
+            def links = itemlabel3.select("h4 a")*.attr("abs:href")
+            ArrayList<String> motas = []
+            links.each {link->
+                Document doc = Jsoup.connect(link).get()
+                def moTaAndChinhSach = doc.select(".go-right > .panel.panel-default p")*.text()
+                motas.add(moTaAndChinhSach[0].replace("+", "\n+") + "\n" + moTaAndChinhSach[1].replace("+", "\n+"))
+            }
 
 
 
-        def imgs = []
-        document.select(".img_list img").each {Element img->
-            println(img.attr("data-original"))
-        }
+            def imgs = []
+            document.select(".img_list img").each {Element img->
+                imgs.add(img.attr("data-original"))
+            }
 
-        titles.eachWithIndex { title, i ->
-            def p = Post.findBySource(links[i])
-//            if(!p) {
-                def arrAddress = address[i].split(',')
-                Post post= new Post(tieude: title, gia: gias[i] as long, mota: motas[i],
-                        diachi: address[i], sonha: arrAddress[0], tenduong: arrAddress[0], phuong: arrAddress[1], quanhuyen: arrAddress[2], tinhthanh: 'Hồ Chí Minh',
-                        source: links[i],
-                        user: User.findByUsername('admin'),
-                        longitude: longitudes[i],
-                        latitude: latitudes[i],
-                        tienich: arrTienichs[i]?.toString()?.replace(']', '')?.replace('[', '')
-                )
-                if(post.hasErrors() || !post.save(flush: true)) {
-                    println("save post err - " + post.errors)
+            titles.eachWithIndex { title, i ->
+                def p = Post.findBySource(links[i])
+                if(!p) {
+                    def arrAddress = address[i].split(',')
+                    Post post = new Post(tieude: title, gia: gias[i] as long, mota: motas[i],
+                            diachi: address[i], sonha: arrAddress[0], tenduong: arrAddress[0], phuong: arrAddress[1], quanhuyen: arrAddress[2], tinhthanh: 'Hồ Chí Minh',
+                            source: links[i],
+                            user: User.findByUsername('admin'),
+                            longitude: longitudes[i],
+                            latitude: latitudes[i],
+                            tienich: arrTienichs[i]?.toString()?.replace(']', '')?.replace('[', '')
+                    )
+                    if(post.tieude?.indexOf("Nhà trọ") != -1) {
+                        post.loai = Post.Loai.PHONGTRO
+                    } else if(post.tieude?.indexOf('Căn hộ') != -1) {
+                        post.loai = Post.Loai.CANHO
+                    } else if(post.tieude?.indexOf('Nhà nguyên căn') != -1) {
+                        post.loai = Post.Loai.NGUYENCAN
+                    }
+
+                    post.addToImage(new Photo(path: saveImage(imgs[i], '/data/clone')))
+
+                    if (post.hasErrors() || !post.save(flush: true)) {
+                        render("save post err - " + post.errors + "</br>")
+                    } else {
+                        render("Process ${i}: saved new post!</br>")
+                    }
                 } else {
-                    println("Process ${i}: saved new post!")
+                    render("alreay exists!</br>")
                 }
 
+            }
+            page++
         }
 
-        render("abc")
 
     }
 
-    def testImage() {
-        try {
-            URL url = new URL("https://mystay.vn/uploads/images/hotels/slider/thumbs/253511_IMG_8512.jpg");
-            Image image = ImageIO.read(url);
+    def saveImage(String link, String path) {
 
-            File folder = new File(Holders.config.folder.tmp + "/${new Date().format('yyyy/MM/dd')}")
-            folder.mkdirs()
-            File f = new File(Holders.config.folder.tmp + "/${new Date().format('yyyy/MM/dd')}/${System.currentTimeMillis()}.png")
+        //See javax.imageio package for more info. That's using the AWT image. Otherwise you could do:
 
-            ImageIO.write(f, "jpg", image)
-        } catch (IOException e) {
+        URL url = new URL(link);
+        InputStream inStream = new BufferedInputStream(url.openStream());
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        byte[] buf = new byte[1024];
+        int n = 0;
+        while (-1!=(n=inStream.read(buf)))
+        {
+            out.write(buf, 0, n);
         }
-
+        out.close();
+        inStream.close();
+        byte[] response = out.toByteArray();
+        //And you may then want to save the image so do:
+        File f = new File(path)
+        f.mkdirs()
+        String fileName = path+"/${System.currentTimeMillis()}.jpg"
+        FileOutputStream fos = new FileOutputStream(fileName);
+        fos.write(response);
+        fos.close();
+        return fileName
     }
 
     def about() {

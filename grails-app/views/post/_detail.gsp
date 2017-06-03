@@ -139,43 +139,16 @@
                     <div id="map-simple"></div>
                 </article>
                 <!--end Map-->
-                <g:if test="${post.facebookId}">
-                    <script>
-                        window.fbAsyncInit = function() {
-                            FB.init({
-                                appId      : '1760086690683134',
-                                cookie     : true,  // enable cookies to allow the server to access
-                                                    // the session
-                                xfbml      : true,  // parse social plugins on this page
-                                version    : 'v2.8' // use graph api version 2.8
-                            });
 
-
-
-                        };
-
-                        // Load the SDK asynchronously
-                        (function(d, s, id) {
-                            var js, fjs = d.getElementsByTagName(s)[0];
-                            if (d.getElementById(id)) return;
-                            js = d.createElement(s); js.id = id;
-                            js.src = "//connect.facebook.net/en_US/sdk.js";
-                            fjs.parentNode.insertBefore(js, fjs);
-                        }(document, 'script', 'facebook-jssdk'));
-
-
-                    </script>
                     <article>
-                        <h3>Reviews</h3>
+                        <h3>Binh luan</h3>
                         <div class="review block">
-                            <div class="fb-comments" data-href="https://www.facebook.com/655549507972910/posts/${post.facebookId}" data-numposts="5" data-width="475"></div>
-                            <tnt:facebook feed="${post.facebookId}"/>
+                            <div class="fb-comments" data-href="${createLink(controller: 'post', action: 'detail', id: post.id, absolute: true)}" data-numposts="5" data-width="475"></div>
                         </div>
 
 
                     </article>
                     <!--end Reviews-->
-                </g:if>
                 <sec:ifAnyGranted roles="ROLE_CHOTHUE,ROLE_SYSADMIN">
                 <article class="center" id="test">
                     <a href="#" class="btn btn-circle btn-default btn-lg"><i class="fa fa-plus"></i></a>
@@ -217,6 +190,8 @@
     function hasClass(element, cls) {
         return (' ' + element.className + ' ').indexOf(' ' + cls + ' ') > -1;
     }
+
+    FB.XFBML.parse();
 
 </script>
 
