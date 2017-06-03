@@ -15,7 +15,7 @@ function drawInfobox(infoboxContent, json, i){
     var tienichContent = '';
     //TODO: có thể tienichs.each để nhanh hơn
     for(j = 0; j < json.data[i].tienich.length; j++) {
-        tienichContent += '<li>' + json.data[i].tienich[j].name +'</li>'
+        tienichContent += '<li>' + json.data[i].tienich[j] +'</li>'
     }
 
     if(tienichContent.length) {
@@ -39,11 +39,11 @@ function drawInfobox(infoboxContent, json, i){
         '<div class="right">' +
             '<article class="animate move_from_top_short">' +
                 '<h3>Mô tả</h3>' +
-                '<p>' +  json.data[i].mota+'...</p>' +
+                '<p class="description">' +  json.data[i].mota+'...</p>' +
             '</article>' +
             '<article class="animate move_from_top_short">' +
             '<h3 style="display: inline-block">Ngày đăng:  </h3>' +
-            '<span> 20/05/2017 10:02' +  json.data[i].dateCreated+ '</span>' +
+            '<span>' +  json.data[i].dateCreated+ '</span>' +
             '</article>' +
             '<article class="animate move_from_top_short">' +
             '<h3 style="display: inline-block">Hết hạn: </h3>' +

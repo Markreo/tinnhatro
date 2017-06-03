@@ -104,6 +104,8 @@ environments:
             port: 8080
         folder:
             tmp: D:/Temp
+#            item: D:\Project\tinnhatro\grails-app\assets\images\default-item.png
+            item: /data/tinnhatro/grails-app/assets/images/default-item.png
         dataSource:
             dialect: org.hibernate.dialect.PostgreSQLDialect
             dbCreate: update

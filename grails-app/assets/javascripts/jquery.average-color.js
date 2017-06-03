@@ -11,7 +11,7 @@
 
     $.fn.averageColor = function () {
         var blockSize = 5, // only sample every 5 pixels
-            defaultRGB = {r: 0, g: 0, b: 0}, // for non-supporting environments
+            defaultRGB = {r: 125, g: 60, b: 7}, // for non-supporting environments
             canvas = document.createElement('canvas'),
             context = canvas.getContext && canvas.getContext('2d'),
             data, width, height,

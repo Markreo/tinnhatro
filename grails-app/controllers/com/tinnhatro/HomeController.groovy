@@ -86,7 +86,7 @@ class HomeController {
 
 
     def func() {
-        String url = "https://mystay.vn/motels/search/6?searching=&price=500000%2C50000000&checkin=03%2F06%2F2017&adults=1&child=0"
+        String url = "https://mystay.vn/motels/search/3?searching=&price=500000%2C50000000&checkin=03%2F06%2F2017&adults=1&child=0"
         Document document = Jsoup.connect(url).get();
         Elements itemlabel3 = document.select(".itemlabel3")
         def titles = itemlabel3.select("a b")*.text()
@@ -108,11 +108,11 @@ class HomeController {
 
         def gias = itemlabel3.select("span.green.size18 b")*.text()*.replaceAll(",", '')*.replaceAll(" đ", '')
         def links = itemlabel3.select("h4 a")*.attr("abs:href")
-        def motas = []
+        ArrayList<String> motas = []
         links.each {link->
             Document doc = Jsoup.connect(link).get()
             def moTaAndChinhSach = doc.select(".go-right > .panel.panel-default p")*.text()
-            motas.add(moTaAndChinhSach[0] + "\n" + moTaAndChinhSach[1])
+            motas.add(moTaAndChinhSach[0].replace("+", "\n+") + "\n" + moTaAndChinhSach[1].replace("+", "\n+"))
         }
 
 
@@ -131,7 +131,8 @@ class HomeController {
                         source: links[i],
                         user: User.findByUsername('admin'),
                         longitude: longitudes[i],
-                        latitude: latitudes[i]
+                        latitude: latitudes[i],
+                        tienich: arrTienichs[i]?.toString()?.replace(']', '')?.replace('[', '')
                 )
                 if(post.hasErrors() || !post.save(flush: true)) {
                     println("save post err - " + post.errors)

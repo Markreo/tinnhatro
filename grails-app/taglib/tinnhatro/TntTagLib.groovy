@@ -2,12 +2,12 @@ package tinnhatro
 
 import com.tinnhatro.Photo
 import com.tinnhatro.User
+import grails.util.Holders
 import org.apache.commons.codec.binary.Base64
 
 class TntTagLib {
     def springSecurityService
     static defaultEncodeAs = [taglib:'raw']
-    //static encodeAsForTags = [tagName: [taglib:'html'], otherTagName: [taglib:'none']]
     static namespace = 'tnt'
 
     def userInfo = { attrs,body->
@@ -24,7 +24,7 @@ class TntTagLib {
             if(path) {
                 File file = new File(path)
                 if (!file.length()) {
-                    file = new File('D:\\Project\\tinnhatro\\grails-app\\assets\\images\\default-item.png')
+                    file = new File("${Holders.config.folder.item}")
                 }
                 FileInputStream fis = new FileInputStream(file);
                 def byteArray = new byte[(int) file.length()];

@@ -126,7 +126,7 @@
                 <h3>Tien ich</h3>
                 <ul class="list-unstyled checkboxes">
                     <g:each in="${com.tinnhatro.Utilities.values()}" var="tienich">
-                        <li><div class="checkbox"><label><input type="checkbox" name="tienich" value="${tienich}">${tienich.name}</label></div></li>
+                        <li><div class="checkbox"><label><input type="checkbox" name="tienich" value="${tienich.name}">${tienich.name}</label></div></li>
                     </g:each>
                 </ul>
             </article>

@@ -20,6 +20,7 @@ class PostController {
     def saveCreate() {
         println(params)
         def post = new Post(params)
+
         def files = request.getFiles('files')
         post.user = springSecurityService.currentUser
         println(post.toString())
@@ -34,7 +35,7 @@ class PostController {
                 file.transferTo(f)
                 post.addToImage(new Photo(path: f.path))
             }
-            post.facebookId = facebookService.postPhotoToGroup(post, "${g.createLink(controller: 'post', action: 'detail', id: post.id, absolute: true)}")
+//            post.facebookId = facebookService.postPhotoToGroup(post, "${g.createLink(controller: 'post', action: 'detail', id: post.id, absolute: true)}")
             post.save(flush: true)
             if((springSecurityService.currentUser as User).isAdmin()) {
                 render([message: 'refresh', html: g.render(template: 'createPost')] as JSON)
@@ -51,7 +52,7 @@ class PostController {
     }
 
     def test() {
-
+        render "${Holders.config.folder.item}"
     }
 
     @Secured('permitAll')

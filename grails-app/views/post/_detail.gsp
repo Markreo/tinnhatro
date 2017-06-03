@@ -79,7 +79,7 @@
                     <h1>${post.tieude}</h1>
                     <h2><i class="fa fa-map-marker"></i>${post.diachi}</h2>
                     <figure class="price average-color"><span><g:formatNumber number="${post.gia}" format="###,###,###"/> đ </span></figure>
-                    <p>${post.mota}</p>
+                    <p class="description">${post.mota}</p>
                 </article>
                 <!--end Description-->
                 <article class="sidebar">
@@ -128,8 +128,8 @@
                 <article class="animate move_from_bottom_short">
                     <h3>Tiện ích</h3>
                     <ul class="bullets">
-                        <g:each in="${post.tienich}" var="tienich">
-                            <li>${tienich.name}</li>
+                        <g:each in="${post.tienich?.split(',')}" var="tienich">
+                            <li>${tienich}</li>
                         </g:each>
                     </ul>
                 </article>

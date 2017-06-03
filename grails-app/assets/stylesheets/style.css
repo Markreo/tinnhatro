@@ -2176,6 +2176,9 @@ input[type="text"]:active, input[type="text"]:focus, input[type="date"]:active, 
   width: 260px;
   vertical-align: middle;
 }
+.infobox .right {
+  width: 300px;
+}
 .infobox .left header {
   background-color: #919191;
   padding: 20px;
@@ -3106,4 +3109,9 @@ input[type="text"]:active, input[type="text"]:focus, input[type="date"]:active, 
     width: 100%;
     padding: 30px;
   }
+}
+
+
+.description {
+  white-space: pre-wrap;
 }

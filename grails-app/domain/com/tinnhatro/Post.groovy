@@ -1,5 +1,6 @@
 package com.tinnhatro
 
+import grails.converters.JSON
 import groovy.transform.ToString
 
 @ToString
@@ -26,7 +27,7 @@ class Post {
     }
 
     static belongsTo = [user: User]
-    static hasMany = [image: Photo, tienich: Utilities]
+    static hasMany = [image: Photo]
 
 
     TrangThai trangThai = TrangThai.HIEULUC
@@ -47,6 +48,8 @@ class Post {
     String namxay
     String doituong
     String source
+
+    String tienich
 
     int rating = 100
     int star
@@ -79,6 +82,7 @@ class Post {
         star nullable: true
         facebookId nullable: true
         source nullable: true
+        tienich nullable: true
     }
 
     static mapping = {
@@ -95,7 +99,7 @@ class Post {
                 rating: this.rating,
                 image: image.toList()?.id,
                 gia: this.gia,
-                tienich: tienich?.name,
+                tienich: tienich?.split(','),
                 mota: this.mota.subSequence(0, this.mota.length() < 255 ? this.mota.length() : 255),
                 dateCreated: this.dateCreated.format('dd/MM/yyyy HH:mm'),
                 lastUpdated: lastUpdated.format('dd/MM/yyyy: HH:mm')]

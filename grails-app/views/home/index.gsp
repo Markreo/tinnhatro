@@ -119,7 +119,7 @@
                             <!-- /.form-group -->
                         </div>
                         <!--/.col-md-6-->
-                        <div class="col-md-3 col-sm-3">
+                        %{--<div class="col-md-3 col-sm-3">
                             <div class="row">
                                 <div class="col-md-6 col-sm-6">
                                     <div class="form-group">
@@ -154,7 +154,7 @@
                                 </div>
                                 <!--/.col-md-3-->
                             </div>
-                        </div>
+                        </div>--}%
                         <div class="col-md-3 col-sm-3">
                             <div class="form-group">
                                 <label for="location">Vị trí</label>
