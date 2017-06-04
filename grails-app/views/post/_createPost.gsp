@@ -23,6 +23,9 @@
                 <div class="form-group">
                     <textarea name="mota" class="form-control" rows="6" id="description" placeholder="Mô tả"></textarea>
                 </div>
+                <div class="form-group">
+                    <textarea name="mota" class="form-control" rows="6" id="dieukhoan" placeholder="Giá và các điều khoản"></textarea>
+                </div>
                 <!--end textarea-->
             </article>
             <!--end Description-->

@@ -17,7 +17,7 @@
             </header>
             <footer style="padding: 10px">
                 <p style="white-space: pre-line">
-                    ${post.mota.subSequence(0, post.mota.length() < 255 ? post.mota.length() : 255)}...
+                    ${post.dieukhoan?.subSequence(0, post.dieukhoan?.length() < 255 ? post.dieukhoan?.length() : 255)}...
                 </p>
             </footer>
         </div>

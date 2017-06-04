@@ -44,6 +44,7 @@ class Post {
     String longitude
     long gia
     String mota
+    String dieukhoan
 
     String namxay
     String doituong
@@ -72,6 +73,7 @@ class Post {
         dientich nullable: true
         gia nullable: false
         mota nullable: true
+        dieukhoan nullable: true
         user nullable: true
         namxay nullable: true
         doituong nullable: true
@@ -87,6 +89,7 @@ class Post {
 
     static mapping = {
         mota type: 'text'
+        dieukhoan type: 'text'
     }
 
     Map toJSON() {
@@ -100,7 +103,8 @@ class Post {
                 image: image.toList()?.id,
                 gia: this.gia,
                 tienich: tienich?.split(','),
-                mota: this.mota.subSequence(0, this.mota.length() < 255 ? this.mota.length() : 255),
+                mota: this.mota.subSequence(0, this.mota.length() < 180 ? this.mota.length() : 180),
+                dieukhoan: this.dieukhoan.subSequence(0, this.dieukhoan.length() < 180 ? this.dieukhoan.length() : 180),
                 dateCreated: this.dateCreated.format('dd/MM/yyyy HH:mm'),
                 lastUpdated: lastUpdated.format('dd/MM/yyyy: HH:mm')]
     }

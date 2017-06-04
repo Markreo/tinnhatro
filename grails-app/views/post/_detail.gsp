@@ -128,8 +128,8 @@
                 <article class="animate move_from_bottom_short">
                     <h3>Tiện ích</h3>
                     <ul class="bullets">
-                        <g:each in="${post.tienich?.split(',')}" var="tienich">
-                            <li>${tienich}</li>
+                        <g:each in="${post.tienich}" var="tienich">
+                            <li>${tienich.name}</li>
                         </g:each>
                     </ul>
                 </article>

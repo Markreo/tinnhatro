@@ -112,10 +112,12 @@ class HomeController {
             def gias = itemlabel3.select("span.green.size18 b")*.text()*.replaceAll(",", '')*.replaceAll(" đ", '')
             def links = itemlabel3.select("h4 a")*.attr("abs:href")
             ArrayList<String> motas = []
+            ArrayList<String> dieukhoans = []
             links.each {link->
                 Document doc = Jsoup.connect(link).get()
                 def moTaAndChinhSach = doc.select(".go-right > .panel.panel-default p")*.text()
-                motas.add(moTaAndChinhSach[0].replace("+", "\n+") + "\n" + moTaAndChinhSach[1].replace("+", "\n+"))
+                motas.add(moTaAndChinhSach[0].replace("+", "\n+"))
+                dieukhoans.add(moTaAndChinhSach[1].replace("+", "\n+"))
             }
 
 
@@ -129,7 +131,7 @@ class HomeController {
                 def p = Post.findBySource(links[i])
                 if(!p) {
                     def arrAddress = address[i].split(',')
-                    Post post = new Post(tieude: title, gia: gias[i] as long, mota: motas[i],
+                    Post post = new Post(tieude: title, gia: gias[i] as long, mota: motas[i], dieukhoan: dieukhoans[i],
                             diachi: address[i], sonha: arrAddress[0], tenduong: arrAddress[0], phuong: arrAddress[1], quanhuyen: arrAddress[2], tinhthanh: 'Hồ Chí Minh',
                             source: links[i],
                             user: User.findByUsername('admin'),
