@@ -35,7 +35,8 @@ class PostController {
                 file.transferTo(f)
                 post.addToImage(new Photo(path: f.path))
             }
-//            post.facebookId = facebookService.postPhotoToGroup(post, "${g.createLink(controller: 'post', action: 'detail', id: post.id, absolute: true)}")
+            post.fbGroupId = facebookService.postPhotoToGroup(post, "${g.createLink(controller: 'post', action: 'detail', id: post.id, absolute: true)}")
+            post.fbPageId = facebookService.postPhotoToPage(post, "${g.createLink(controller: 'post', action: 'detail', id: post.id, absolute: true)}")
             post.save(flush: true)
             if((springSecurityService.currentUser as User).isAdmin()) {
                 render([message: 'refresh', html: g.render(template: 'createPost')] as JSON)
@@ -52,7 +53,7 @@ class PostController {
     }
 
     def test() {
-        render "${Holders.config.folder.item}"
+        render facebookService.postPhotoToPage(Post.first(), "${g.createLink(controller: 'post', action: 'detail', id: Post.first().id, absolute: true)}")
     }
 
     @Secured('permitAll')
@@ -90,7 +91,6 @@ class PostController {
     }
 
     def getFeed() {
-        facebookService.getFeed()
-        render("asdas")
+        render facebookService.getComments() as JSON
     }
 }

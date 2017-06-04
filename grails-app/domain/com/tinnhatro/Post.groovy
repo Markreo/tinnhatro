@@ -55,7 +55,8 @@ class Post {
     int rating = 100
     int star
 
-    String facebookId
+    String fbGroupId
+    String fbPageId
 
     Date dateCreated
     Date lastUpdated
@@ -82,7 +83,8 @@ class Post {
         rating nullable: true
         trangThai nullable: true
         star nullable: true
-        facebookId nullable: true
+        fbGroupId nullable: true
+        fbPageId nullable: true
         source nullable: true
         tienich nullable: true
     }

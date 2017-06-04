@@ -1,12 +1,13 @@
 package tinnhatro
 
-import com.tinnhatro.Photo
+import com.restfb.types.Comment
 import com.tinnhatro.User
 import grails.util.Holders
 import org.apache.commons.codec.binary.Base64
 
 class TntTagLib {
     def springSecurityService
+    def facebookService
     static defaultEncodeAs = [taglib:'raw']
     static namespace = 'tnt'
 
@@ -43,7 +44,10 @@ class TntTagLib {
     }
 
     def facebook = { attrs, body->
-        def feedId = attrs.feed
+        def fbId = attrs.fbId
+        if(fbId) {
+            out << g.render(template: '/template/comments', model: [comments: facebookService.getComments(fbId)])
 
+        }
     }
 }

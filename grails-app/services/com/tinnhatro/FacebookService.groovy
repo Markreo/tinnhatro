@@ -6,9 +6,17 @@ import com.restfb.DefaultFacebookClient
 
 import com.restfb.FacebookClient
 import com.restfb.FacebookClient.AccessToken
+import com.restfb.exception.FacebookException
+import com.restfb.types.Comment
+import com.restfb.types.Comments
 import com.restfb.types.FacebookType
 import com.restfb.Parameter
+import com.restfb.types.Page
+import grails.converters.JSON
+import grails.plugins.rest.client.RestBuilder
+import grails.plugins.rest.client.RestResponse
 import grails.transaction.Transactional
+import groovy.json.JsonSlurper
 
 @Transactional
 class FacebookService {
@@ -27,61 +35,62 @@ class FacebookService {
 
     def postPhotoToGroup(Post post, String link = '') {
         String tieni = ""
-        post.tienich.each {
-            tieni = tieni + " \t- " + it.name + "\n"
+        post.tienich?.split(',')?.each {
+            tieni = tieni + " \t- " + it + "\n"
         }
         FacebookClient fbClient = new DefaultFacebookClient(longAccessToken)
 
         FacebookType response = fbClient.publish(groupId + (post.image ? "/photos" : "/feed"),
                 FacebookType.class,
                 post.image ? BinaryAttachment.with("file-name", new File(post.image.first().path).bytes) : null,
-                Parameter.with("message", post.tieude.toUpperCase() + "\n" + post.mota +  "\n" + "* Địa chỉ: " + post.diachi + "\n" + tieni + "\n<a>" + link +"</a>")
+                Parameter.with("message", post.tieude.toUpperCase() + "\n" + post.mota +  "\n" + post.dieukhoan + "\n" + "* Địa chỉ: " + post.diachi + "\n" + tieni + "\n" + link)
         );
         return response.getId()
     }
 
     def postPhotoToPage(Post post, String link = '') {
         String tieni = ""
-        post.tienich.each {
-            tieni = tieni + " \t- " + it.name + "\n"
+        post.tienich?.split(',')?.each {
+            tieni = tieni + " \t- " + it + "\n"
         }
-        FacebookClient fbClient = new DefaultFacebookClient(longAccessToken)
 
-        FacebookType response = fbClient.publish(groupId + (post.image ? "/photos" : "/feed"),
+        FacebookClient fbClient = new DefaultFacebookClient(getPageToken(fanPageId, longAccessToken))
+
+
+        FacebookType response = fbClient.publish(fanPageId + (post.image ? "/photos" : "/feed"),
                 FacebookType.class,
                 post.image ? BinaryAttachment.with("file-name", new File(post.image.first().path).bytes) : null,
-                Parameter.with("message", post.tieude.toUpperCase() + "\n" + post.mota +  "\n" + "* Địa chỉ: " + post.diachi + "\n" + tieni + "\n<a>" + link +"</a>")
+                Parameter.with("message", post.tieude.toUpperCase() + "\n" + post.mota +  "\n" + "* Địa chỉ: " + post.diachi + "\n" + tieni + "\n" + link)
         );
         return response.getId()
     }
 
 
-    def testPrice() {
-        FacebookClient fbClient = new DefaultFacebookClient(longAccessToken)
+    ArrayList<Comment> getComments(String id = '1576433009047575') {
+        try {
+            FacebookClient fbClient = new DefaultFacebookClient(getPageToken(fanPageId, longAccessToken))
+            com.restfb.types.Post post = fbClient.fetchObject(id, com.restfb.types.Post.class,
+                    Parameter.with("fields", "comments"));
 
-        FacebookType response = fbClient.publish(groupId + "/feed",
-                FacebookType.class,
-                Parameter.with("message",
-                        "+ Nhà trọ giá nước: 100.000đ/người\n" +
-                        "+ Rác và dọn vệ sinh hành lang: 40.000đ/phòng/tháng.\n" +
-                        "+ Giữ xe máy: 150.000đ/chiếc xe số/tháng, 200.000/chiếc xe ga/tháng.\n" +
-                        "+ Thang máy: 100.000đ/người.\n" +
-                        "+ Giờ giấc tự do.\n" +
-                        "+ Hợp đồng kí tối thiểu 6 tháng, đặt cọc 5.000.000đ +1 tháng tiền phòng.\n" +
-                        "* Địa chỉ: 300 Nguyễn Đình Chiểu, Hồ Chí Minh, Việt Nam\n" )
-        )
-        return response.getId()
+            ArrayList<Comment> comments = new ArrayList<Comment>()
+            for (Comment c : post.comments.data) {
+                Comment comment = fbClient.fetchObject(c.id, Comment.class,
+                        Parameter.with("fields", "comments,likes,message,from")
+                )
+                comments.add(comment)
+            }
+            return comments
+        } catch (FacebookException ex ){
+            println ex.message
+            return null
+        }
     }
 
-    def getFeed(String id = '101678373762384') {
-        FacebookClient fbClient = new DefaultFacebookClient(longAccessToken)
-        com.restfb.types.Post post = fbClient.fetchObject("801952856622339", com.restfb.types.Post.class);
-        println("Post: " + post.getId() + " : " + post.getMessage());
-       /* for (Comment comment : commentData) {
-            com.restfb.types.FacebookComment fbComment = FacebookComment.create(null, comment);
-            println("fbComment: {}", fbComment);
-            println("CommentMessage : {} ", fbComment.getMessage());
-        }*/
-
+    String getPageToken(String pageId, String token) {
+        RestBuilder rest = new RestBuilder()
+        RestResponse resp = rest.get("https://graph.facebook.com/v2.9/${pageId}?fields=access_token&access_token=${token}")
+        String page_token = new JsonSlurper().parseText(resp.json.toString()).access_token
+        println(page_token)
+        return page_token
     }
 }

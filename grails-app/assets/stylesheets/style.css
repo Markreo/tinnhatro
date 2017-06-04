@@ -3115,3 +3115,90 @@ input[type="text"]:active, input[type="text"]:focus, input[type="date"]:active, 
 .description {
   white-space: pre-wrap;
 }
+
+.myfacebook {
+  padding: 8px;
+  width: 475px;
+}
+
+.myfacebook .header {
+  border-bottom: 1px solid #e9ebee;
+  line-height: 25px;
+  margin-bottom: 24px;
+  padding: 16px 0;
+}
+
+
+.myfacebook .header em {
+  font-size: 14px;
+  font-style: normal;
+  font-weight: bold;
+  line-height: 25px;
+  font-family: Helvetica, Arial, sans-serif;
+  color: #1d2129;
+  direction: ltr;
+}
+
+.myfacebook .body .comment {
+  border-top: 1px dotted #d3d6db;
+  padding-top: 12px;
+  margin-top: 12px;
+  font-size: 14px;
+  line-height: 1.358;
+  word-break: break-all;
+  word-wrap: break-word;
+}
+
+.myfacebook .body .comment.first {
+  border-top: 0;
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.myfacebook .body .comment .left {
+   float: left;
+   display: block;
+ }
+
+.myfacebook .body .comment .left a {
+  margin-right: 8px;
+  display: block;
+  color: #365899;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.myfacebook .body .comment .left a img{
+  height: 32px;
+  width: 32px;
+}
+
+.myfacebook .body .comment .right {
+  display: block;
+}
+
+.myfacebook .body .comment .right .content{
+  overflow: hidden;
+}
+
+.myfacebook .body .comment .right .content span a{
+  font-weight: bold;
+  white-space: nowrap;
+  color: #365899;
+  cursor: pointer;
+  text-decoration: none;
+}
+.myfacebook .body .comment .right .content .message span{
+  word-wrap: break-word;
+  font-size: 14px;
+  line-height: 1.358;
+  word-break: break-all;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+.myfacebook .body .comment .right .content .action a em{
+  color: #4267b2;
+  font-style: normal;
+  font-size: 12px;
+  line-height: 1.358;
+}

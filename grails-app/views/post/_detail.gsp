@@ -51,7 +51,16 @@
 
 </head>
 <body class="external">
-
+<g:if test="${!isAjax}">
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.9&appId=1370513073041989";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+</g:if>
 <div id="item-detail" class="content-container">
     <div class="row">
         <div class="col-md-8">
@@ -128,8 +137,8 @@
                 <article class="animate move_from_bottom_short">
                     <h3>Tiện ích</h3>
                     <ul class="bullets">
-                        <g:each in="${post.tienich}" var="tienich">
-                            <li>${tienich.name}</li>
+                        <g:each in="${post.tienich.split(',')}" var="tienich">
+                            <li>${tienich}</li>
                         </g:each>
                     </ul>
                 </article>
@@ -139,15 +148,14 @@
                     <div id="map-simple"></div>
                 </article>
                 <!--end Map-->
-
-                    <article>
-                        <h3>Binh luan</h3>
-                        <div class="review block">
-                            <div class="fb-comments" data-href="${createLink(controller: 'post', action: 'detail', id: post.id, absolute: true)}" data-numposts="5" data-width="475"></div>
-                        </div>
-
-
-                    </article>
+                <article>
+                    <h3>Bình luận</h3>
+                    <div class="review block">
+                        <div class="fb-comments" data-href="${createLink(controller: 'post', action: 'detail', id: post.id, absolute: true)}" data-numposts="5" data-width="475"></div>
+                        <div class="hide-block"></div>
+                        <tnt:facebook fbId="${post.fbPageId}"/>
+                    </div>
+                </article>
                     <!--end Reviews-->
                 <sec:ifAnyGranted roles="ROLE_CHOTHUE,ROLE_SYSADMIN">
                 <article class="center" id="test">
