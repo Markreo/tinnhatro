@@ -93,4 +93,25 @@ class PostController {
     def getFeed() {
         render facebookService.getComments() as JSON
     }
+
+
+    //role admin
+    def pushPage(long id){
+        //TODO: get post by id, use facebookService post to fanpage and save this id
+    }
+
+    //role admin
+    def pushGroup(long id) {
+        //TODO: get post by id, use facebookService post to group and save this id
+    }
+
+    def adminCreate() {
+        //TODO: create post by admin
+        //solution: user create(), and _createPost.gsp if(!request.xhr) {add css}
+    }
+
+    //role admin
+    def delete(long id) {
+        //TODO: delete post
+    }
 }

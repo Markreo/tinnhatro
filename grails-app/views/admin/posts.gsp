@@ -14,15 +14,15 @@
             </div>
             <div class="widget-buttons">
                 <span class="input-icon">
-                    <input id="search-input" type="text" class="form-control input-xs" id="glyphicon-search" placeholder="Tìm kiếm">
-                    <i class="glyphicon glyphicon-search blue"></i>
+                    <input id="search-input" type="text" class="form-control input-xs" placeholder="Tìm kiếm">
+                    <i class="glyphicon glyphicon-search themeprimary"></i>
                 </span>
             </div>
         </div>
         <div class="widget-body">
             <div class="table-toolbar pull-right">
                 <div class="btn-group">
-                    <a href="${createLink(controller: 'post',action: 'create')}" class="btn btn-azure" rel="bootbox"><i class="fa fa-plus"></i> Thêm</a>
+                    <a href="${createLink(controller: 'post',action: 'adminCreate')}" class="btn btn-primary" rel="bootbox"><i class="fa fa-plus"></i> Thêm</a>
                 </div>
             </div>
             <table id="data-table-posts" class="table table-hover table-striped table-bordered">
@@ -35,50 +35,29 @@
                             người đăng
                         </th>
                         <th>
-                            tiêu đề
+                            Tiêu đề
                         </th>
                         <th>
-                            loại
+                            Loại
                         </th>
                         <th>
-                            trạng thái
+                            Trạng thái
                         </th>
                         <th>
-                            địa chỉ
+                            Địa chỉ
                         </th>
                         <th>
-                            số nhà
+                            Image
                         </th>
                         <th>
-                            tên đường
+                            Giá
                         </th>
                         <th>
-                            phường
+                            Rate
                         </th>
-                        <th>
-                            quận/huyện
-                        </th>
-                        <th>
-                            tỉnh/thành
-                        </th>
-                        <th>
-                            diện tích
-                        </th>
-                        <th>
-                            giá
-                        </th>
-                        <th>
-                            mô tả
-                        </th>
-                        <th>
-                            năm xây
-                        </th>
-                        <th>
-                            đối tượng
-                        </th>
-                        <th>
-                            rate
-                        </th>
+                        <th>Fanpage</th>
+                        <th>Group</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>

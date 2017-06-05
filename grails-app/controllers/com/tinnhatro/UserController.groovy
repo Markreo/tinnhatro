@@ -10,8 +10,14 @@ class UserController {
 
     def index() { }
 
-    def create() {
+    //role admin
+    def create() {//phải ở một action khác với register() vì phân quyền, bảo mật
+        //TODO: create admin user, acion = 'saveAdmin'
+    }
 
+    //role admin
+    def saveAdmin() {
+        //TODO: create admin user, role = ROLE_ADMIN
     }
 
     @Secured('permitAll')
@@ -37,5 +43,15 @@ class UserController {
             }
             render([success: true] as JSON)
         }
+    }
+
+    //role sysadmin
+    def disable(long id) {
+        //TODO: disable user
+    }
+
+    //role admin
+    def delete(long id) {
+        //TODO: delete user
     }
 }

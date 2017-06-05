@@ -45,7 +45,6 @@ class LoginController {
 
 	/** Show the login page. */
 	def auth() {
-
 		def conf = getConf()
 
 		if (springSecurityService.isLoggedIn()) {
@@ -54,11 +53,19 @@ class LoginController {
 		}
 
 		String postUrl = request.contextPath + conf.apf.filterProcessesUrl
-		render view: 'auth', model: [postUrl: postUrl,
-		                             rememberMeParameter: conf.rememberMe.parameter,
-		                             usernameParameter: conf.apf.usernameParameter,
-		                             passwordParameter: conf.apf.passwordParameter,
-		                             gspLayout: conf.gsp.layoutAuth]
+		if(request.xhr) {
+			render template: 'auth', model: [postUrl: postUrl,
+											 rememberMeParameter: conf.rememberMe.parameter,
+											 usernameParameter: conf.apf.usernameParameter,
+											 passwordParameter: conf.apf.passwordParameter,
+											 gspLayout: conf.gsp.layoutAuth]
+		} else {
+			render view: 'auth', model: [postUrl: postUrl,
+											 rememberMeParameter: conf.rememberMe.parameter,
+											 usernameParameter: conf.apf.usernameParameter,
+											 passwordParameter: conf.apf.passwordParameter,
+											 gspLayout: conf.gsp.layoutAuth]
+		}
 	}
 
 	/** The redirect action for Ajax requests. */

@@ -23,7 +23,7 @@
             <div class="widget-buttons">
                 <span class="input-icon">
                     <input id="search-input" type="text" class="form-control input-xs" id="glyphicon-search" placeholder="Tìm kiếm">
-                    <i class="glyphicon glyphicon-search blue"></i>
+                    <i class="glyphicon glyphicon-search themeprimary"></i>
                 </span>
             </div>
         </div>
@@ -31,7 +31,7 @@
             %{--<qlnhatro:message/>--}%
             <div class="table-toolbar pull-right">
                 <div class="btn-group">
-                    <a href="${createLink(controller: 'renter',action: 'create')}" class="btn btn-azure" rel="bootbox"><i class="fa fa-plus"></i> Thêm</a>
+                    <a href="${createLink(controller: 'user',action: 'create')}" class="btn btn-azure" rel="bootbox"><i class="fa fa-plus"></i> Thêm</a>
                 </div>
             </div>
             <table id="renters" class="table table-hover table-striped table-bordered">
@@ -41,21 +41,20 @@
                         #
                     </th>
                     <th>
-                        Ten
+                        Tên
                     </th>
                     <th>
-                        Ho va Ten Dem
+                        Username
                     </th>
                     <th>
-                        ngay sinh
+                        Số điện thoại
                     </th>
                     <th>
-                        gioi tinh
+                        Email
                     </th>
                     <th>
-                        Phong
+                        Actions
                     </th>
-                    <th width="15%"></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -66,7 +65,7 @@
     </div>
 </div>
 <script>
-    Datatable.init("#renters", "${createLink(controller: 'renter', action: 'renters')}", "#search-input");
+    Datatable.init("#renters", "${createLink(controller: 'admin', action: 'users')}", "#search-input");
     $(document).on('click', "a[rel='bootbox']", function (event) {
         console.log('botbox')
         event.preventDefault();

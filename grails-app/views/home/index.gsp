@@ -53,7 +53,13 @@
                         <li>
                             <sec:ifLoggedIn>
                                 Xin chào <tnt:userInfo field="name"/>!
-                            </li> <li><g:link controller='logout'>Log out</g:link>
+                            </li>
+                            <sec:ifAnyGranted roles="ROLE_CHOTHUE,ROLE_SYSADMIN">
+                            <li>
+                                <a href="${createLink(controller: 'admin')}">Admin</a>
+                            </li>
+                            </sec:ifAnyGranted>
+                            <li><g:link controller='logout'>Log out</g:link>
                             </sec:ifLoggedIn>
                             <sec:ifNotLoggedIn>
                                 <a href="${createLink(controller: 'login', action: 'auth')}" data-expand-width="col-8" data-transition-parent=".content-loader" data-external="true">Đăng nhập</a>

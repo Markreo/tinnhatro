@@ -5,13 +5,17 @@ import groovy.transform.ToString
 
 @ToString
 class Post {
+    //TODO: change and generator id to String -> .../chi-tiet/id-bai-post
     enum TrangThai{
-        HIEULUC(0),
-        HETHAN(1),
-        XOA(2)
+        HIEULUC(0, "Hiển thị", "info"),
+        HETHAN(1, "Hết hạn", "orange"),
+        XOA(2, "Xóa", "danger"),
+        KIEMDUYET(3, "Kiểm duyệt", "success")
 
         int id
-        TrangThai(id) {this.id = id}
+        String name
+        String color
+        TrangThai(id, name, color) {this.id = id; this.name = name; this.color = color}
     }
 
     enum Loai {
