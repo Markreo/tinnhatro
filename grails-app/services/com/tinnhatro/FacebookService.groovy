@@ -75,7 +75,7 @@ class FacebookService {
             ArrayList<Comment> comments = new ArrayList<Comment>()
             for (Comment c : post.comments.data) {
                 Comment comment = fbClient.fetchObject(c.id, Comment.class,
-                        Parameter.with("fields", "comments,likes,message,from")
+                        Parameter.with("fields", "comments,likes,message,from,created_time")
                 )
                 comments.add(comment)
             }
@@ -92,5 +92,11 @@ class FacebookService {
         String page_token = new JsonSlurper().parseText(resp.json.toString()).access_token
         println(page_token)
         return page_token
+    }
+
+    def getUser(String id = '464966183844434') {
+        FacebookClient fbClient = new DefaultFacebookClient(longAccessToken)
+        com.restfb.types.User user = fbClient.fetchObject(id, com.restfb.types.User.class,
+                Parameter.with("fields", "comments"))
     }
 }

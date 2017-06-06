@@ -8,13 +8,19 @@
     <!-- /Page Sidebar Header -->--}%
     <!-- Sidebar Menu -->
     <ul class="nav sidebar-menu">
+        <li>
+            <a href="${createLink(uri: "/")}">
+                <i class="menu-icon glyphicon glyphicon-globe"></i>
+                <span class="menu-text">Website</span>
+            </a>
+        </li>
         <!--Dashboard-->
-            <li class="${controllerName == 'admin' && actionName == 'index' ? 'active' : ''}">
-                <a href="${createLink(controller: 'admin')}">
-                    <i class="menu-icon glyphicon glyphicon-home"></i>
-                    <span class="menu-text">Dashboard</span>
-                </a>
-            </li>
+        <li class="${controllerName == 'admin' && actionName == 'index' ? 'active' : ''}">
+            <a href="${createLink(controller: 'admin')}">
+                <i class="menu-icon glyphicon glyphicon-home"></i>
+                <span class="menu-text">Dashboard</span>
+            </a>
+        </li>
 
         <sec:ifAllGranted roles="ROLE_SYSADMIN">
             <li class="${controllerName == 'room' ? 'active' : ''}">

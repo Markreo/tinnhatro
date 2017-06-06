@@ -50,4 +50,11 @@ class TntTagLib {
 
         }
     }
+
+    def genFBUser= {attrs, body->
+        def fbId = attrs.fbId
+        if(fbId) {
+            facebookService.getUser(fbId)
+        }
+    }
 }

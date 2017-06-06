@@ -75,9 +75,10 @@ class AdminController {
             arr.put(p.image*.id)
             arr.put(p.gia)
             arr.put(p.rating)
-            arr.put(p.fbPageId ? """<a href='https://facebook.com/${p.fbPageId}'>${p.fbPageId}</>""" : """<a href="${createLink(controller: 'admin', action: 'pushPage', id: p.id)}" class="btn btn-default btn-xs themesecondary"><i class="fa fa-share-alt"></i>Fanpage</a>""")
-            arr.put(p.fbGroupId ? """<a href='https://facebook.com/${p.fbGroupId}'>${p.fbGroupId}</>""" : """<a href="${createLink(controller: 'admin', action: 'pushGroup', id: p.id)}" class="btn btn-default btn-xs themethirdcolor"><i class="fa fa-share-alt"></i>Group</a>""")
+            arr.put(p.fbPageId ? """<a href='https://facebook.com/${p.fbPageId}' target='_blank'><i class='fa fa-facebook-official'></i> Link</a>""" : """<a href="${createLink(controller: 'admin', action: 'pushPage', id: p.id)}" class="btn btn-default btn-xs themesecondary"><i class="fa fa-share-alt"></i>Fanpage</a>""")
+            arr.put(p.fbGroupId ? """<a href='https://facebook.com/${p.fbGroupId}' target='_blank'>${p.fbGroupId}</a>""" : """<a href="${createLink(controller: 'admin', action: 'pushGroup', id: p.id)}" class="btn btn-default btn-xs themethirdcolor"><i class="fa fa-share-alt"></i>Group</a>""")
             arr.put("""
+<a href="${createLink(controller: 'post', action: 'up', id: p.id)}" class="btn btn-xs btn-default shiny info"><i class="fa fa-arrow-up"></i>Up</a>
 <a href="${createLink(controller: 'post', action: 'edit', id: p.id)}" class="btn btn-xs btn-default shiny success"><i class="fa fa-edit"></i>Edit</a>
 <a href="${createLink(controller: 'post', action: 'delete', id: p.id)}" class="btn btn-xs btn-default shiny danger" onclick="return confirm('Bạn có muốn xóa?')"><i class="fa fa-trash-o"></i>Delete</a>""")
             aaData.put(arr)
