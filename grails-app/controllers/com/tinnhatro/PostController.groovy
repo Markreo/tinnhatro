@@ -96,8 +96,19 @@ class PostController {
 
 
     //role admin
+    @Secured(["ROLE_SYSADMIN","ROLE_ADMIN"])
     def pushPage(long id){
         //TODO: get post by id, use facebookService post to fanpage and save this id
+        def post = Post.get(id)
+        if (post) {
+            post.fbPageId = facebookService.postPhotoToPage(post, "${createLink(controller: 'post', action: 'detail', id: post.id)}")
+            if(post.hasErrors() || !post.save(flush: true)) {
+                render("error!")
+            } else {
+                flash.message = 'success'
+                render("success")
+            }
+        }
     }
 
     //role admin
