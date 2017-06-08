@@ -89,6 +89,7 @@
                     <h2><i class="fa fa-map-marker"></i>${post.diachi}</h2>
                     <figure class="price average-color"><span><g:formatNumber number="${post.gia}" format="###,###,###"/> đ </span></figure>
                     <p class="description">${post.mota}</p>
+                    <p class="description">${post.dieukhoan}</p>
                 </article>
                 <!--end Description-->
                 <article class="sidebar">

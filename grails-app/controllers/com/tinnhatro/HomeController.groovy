@@ -1,5 +1,6 @@
 package com.tinnhatro
 
+import app.HttpsTrustManager
 import grails.converters.JSON
 import grails.plugin.springsecurity.annotation.Secured
 import grails.plugins.rest.client.RestBuilder
@@ -87,6 +88,7 @@ class HomeController {
 
     def func() {
         int page = 1
+        HttpsTrustManager.allowAllSSL()
         while (page < 10) {
             String url = "https://mystay.vn/motels/search/${page}?searching=&price=500000%2C50000000&checkin=03%2F06%2F2017&adults=1&child=0"
             render("process " + url + "</br>")
@@ -166,7 +168,7 @@ class HomeController {
     }
 
     def saveImage(String link, String path) {
-
+        HttpsTrustManager.allowAllSSL()
         //See javax.imageio package for more info. That's using the AWT image. Otherwise you could do:
 
         URL url = new URL(link);
