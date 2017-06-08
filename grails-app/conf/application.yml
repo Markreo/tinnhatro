@@ -104,6 +104,8 @@ environments:
             port: 8080
         folder:
             tmp: D:/Temp
+#            item: D:\Project\tinnhatro\grails-app\assets\images\default-item.png
+            item: /data/tinnhatro/grails-app/assets/images/default-item.png
         dataSource:
             dialect: org.hibernate.dialect.PostgreSQLDialect
             dbCreate: update
@@ -116,12 +118,13 @@ environments:
             url: jdbc:h2:mem:testDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
     production:
         server:
-            port: 8080
+            port: 8002
         folder:
-            tmp: /opt/webapps/tmp
+            tmp: /opt/giap/temp
+            item: /opt/giap/tnt/webapps/ROOT/grails-app/assets/images/default-item.png
         dataSource:
             dbCreate: update
-            url: jdbc:postgresql://127.0.0.1:5432/tnt
+            url: jdbc:postgresql://203.113.174.175:5432/tnt
             username: postgres
             password: MinhH2p
             properties:

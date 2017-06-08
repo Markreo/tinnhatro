@@ -2,6 +2,7 @@ package tinnhatro
 
 import com.tinnhatro.Photo
 import grails.plugin.springsecurity.annotation.Secured
+import grails.util.Holders
 
 @Secured(['ROLE_ADMIN', 'ROLE_SYSADMIN'])
 class MediaController {
@@ -14,7 +15,7 @@ class MediaController {
 
         File file = new File(path)
         if(!file.length() || !path) {
-            file = new File('D:\\Project\\tinnhatro\\grails-app\\assets\\images\\default-item.png')
+            file = new File("${Holders.config.folder.item}")
         }
         response.setHeader('Content-length', file.size().toString())
         response.contentType = "image/jpg" // or the appropriate image content type

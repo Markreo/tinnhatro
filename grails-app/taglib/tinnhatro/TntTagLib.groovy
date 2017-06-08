@@ -1,13 +1,14 @@
 package tinnhatro
 
-import com.tinnhatro.Photo
+import com.restfb.types.Comment
 import com.tinnhatro.User
+import grails.util.Holders
 import org.apache.commons.codec.binary.Base64
 
 class TntTagLib {
     def springSecurityService
+    def facebookService
     static defaultEncodeAs = [taglib:'raw']
-    //static encodeAsForTags = [tagName: [taglib:'html'], otherTagName: [taglib:'none']]
     static namespace = 'tnt'
 
     def userInfo = { attrs,body->
@@ -24,7 +25,7 @@ class TntTagLib {
             if(path) {
                 File file = new File(path)
                 if (!file.length()) {
-                    file = new File('D:\\Project\\tinnhatro\\grails-app\\assets\\images\\default-item.png')
+                    file = new File("${Holders.config.folder.item}")
                 }
                 FileInputStream fis = new FileInputStream(file);
                 def byteArray = new byte[(int) file.length()];
@@ -43,7 +44,17 @@ class TntTagLib {
     }
 
     def facebook = { attrs, body->
-        def feedId = attrs.feed
+        def fbId = attrs.fbId
+        if(fbId) {
+            out << g.render(template: '/template/comments', model: [comments: facebookService.getComments(fbId)])
 
+        }
+    }
+
+    def genFBUser= {attrs, body->
+        def fbId = attrs.fbId
+        if(fbId) {
+            facebookService.getUser(fbId)
+        }
     }
 }

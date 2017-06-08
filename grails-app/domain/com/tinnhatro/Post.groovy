@@ -1,16 +1,21 @@
 package com.tinnhatro
 
+import grails.converters.JSON
 import groovy.transform.ToString
 
 @ToString
 class Post {
+    //TODO: change and generator id to String -> .../chi-tiet/id-bai-post
     enum TrangThai{
-        HIEULUC(0),
-        HETHAN(1),
-        XOA(2)
+        HIEULUC(0, "Hiển thị", "info"),
+        HETHAN(1, "Hết hạn", "orange"),
+        XOA(2, "Xóa", "danger"),
+        KIEMDUYET(3, "Kiểm duyệt", "success")
 
         int id
-        TrangThai(id) {this.id = id}
+        String name
+        String color
+        TrangThai(id, name, color) {this.id = id; this.name = name; this.color = color}
     }
 
     enum Loai {
@@ -26,7 +31,7 @@ class Post {
     }
 
     static belongsTo = [user: User]
-    static hasMany = [image: Photo, tienich: Utilities]
+    static hasMany = [image: Photo]
 
 
     TrangThai trangThai = TrangThai.HIEULUC
@@ -43,14 +48,19 @@ class Post {
     String longitude
     long gia
     String mota
+    String dieukhoan
 
     String namxay
     String doituong
+    String source
+
+    String tienich
 
     int rating = 100
     int star
 
-    String facebookId
+    String fbGroupId
+    String fbPageId
 
     Date dateCreated
     Date lastUpdated
@@ -68,6 +78,7 @@ class Post {
         dientich nullable: true
         gia nullable: false
         mota nullable: true
+        dieukhoan nullable: true
         user nullable: true
         namxay nullable: true
         doituong nullable: true
@@ -76,11 +87,15 @@ class Post {
         rating nullable: true
         trangThai nullable: true
         star nullable: true
-        facebookId nullable: true
+        fbGroupId nullable: true
+        fbPageId nullable: true
+        source nullable: true
+        tienich nullable: true
     }
 
     static mapping = {
         mota type: 'text'
+        dieukhoan type: 'text'
     }
 
     Map toJSON() {
@@ -93,8 +108,9 @@ class Post {
                 rating: this.rating,
                 image: image.toList()?.id,
                 gia: this.gia,
-                tienich: tienich?.name,
-                mota: this.mota.subSequence(0, this.mota.length() < 255 ? this.mota.length() : 255),
+                tienich: tienich?.split(','),
+                mota: this.mota.subSequence(0, this.mota.length() < 180 ? this.mota.length() : 180),
+                dieukhoan: this.dieukhoan.subSequence(0, this.dieukhoan.length() < 180 ? this.dieukhoan.length() : 180),
                 dateCreated: this.dateCreated.format('dd/MM/yyyy HH:mm'),
                 lastUpdated: lastUpdated.format('dd/MM/yyyy: HH:mm')]
     }

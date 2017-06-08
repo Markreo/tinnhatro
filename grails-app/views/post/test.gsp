@@ -1,28 +1,14 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: user
-  Date: 5/19/2017
-  Time: 11:49 PM
---%>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.9&appId=458116954528502";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<article>
+    <h3>Reviews</h3>
+    <div class="fb-comments" data-href="https://www.facebook.com/655549507972910/posts/123456" data-numposts="5"></div>
 
-<%@ page contentType="text/html;charset=UTF-8" %>
-<html>
-<head>
-    <title></title>
-    <asset:link rel="stylesheet" href="bootstrap/css/bootstrap.css" type="text/css"/>
-    <asset:link rel="stylesheet" href="bootstrap-select.min.css" type="text/css"/>
-    <asset:link rel="stylesheet" href="owl.carousel.css" type="text/css"/>
-    <asset:link rel="stylesheet" href="jquery.nouislider.min.css" type="text/css"/>
-    <asset:link rel="stylesheet" href="style.css" type="text/css"/>
-    <asset:link rel="stylesheet" href="fileinput.css" type="text/css"/>
 
-    <title>Tin nhà trọ</title>
-    <asset:javascript  src="myjavascript.js" />
-    <asset:javascript  src="bootbox.min.js" />
-</head>
-
-<body>
-<img src="assets/default-item-blue.png"/>
-<asset:image src="default-item-blue.png"/>
-</body>
-</html>
+</article>

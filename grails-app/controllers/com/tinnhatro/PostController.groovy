@@ -20,6 +20,7 @@ class PostController {
     def saveCreate() {
         println(params)
         def post = new Post(params)
+
         def files = request.getFiles('files')
         post.user = springSecurityService.currentUser
         println(post.toString())
@@ -34,7 +35,8 @@ class PostController {
                 file.transferTo(f)
                 post.addToImage(new Photo(path: f.path))
             }
-            post.facebookId = facebookService.postPhotoToGroup(post, "${g.createLink(controller: 'post', action: 'detail', id: post.id, absolute: true)}")
+            post.fbGroupId = facebookService.postPhotoToGroup(post, "${g.createLink(controller: 'post', action: 'detail', id: post.id, absolute: true)}")
+            post.fbPageId = facebookService.postPhotoToPage(post, "${g.createLink(controller: 'post', action: 'detail', id: post.id, absolute: true)}")
             post.save(flush: true)
             if((springSecurityService.currentUser as User).isAdmin()) {
                 render([message: 'refresh', html: g.render(template: 'createPost')] as JSON)
@@ -51,7 +53,7 @@ class PostController {
     }
 
     def test() {
-
+        render facebookService.postPhotoToPage(Post.first(), "${g.createLink(controller: 'post', action: 'detail', id: Post.first().id, absolute: true)}")
     }
 
     @Secured('permitAll')
@@ -89,7 +91,38 @@ class PostController {
     }
 
     def getFeed() {
-        facebookService.getFeed()
-        render("asdas")
+        render facebookService.getComments() as JSON
+    }
+
+
+    //role admin
+    @Secured(["ROLE_SYSADMIN","ROLE_ADMIN"])
+    def pushPage(long id){
+        //TODO: get post by id, use facebookService post to fanpage and save this id
+        def post = Post.get(id)
+        if (post) {
+            post.fbPageId = facebookService.postPhotoToPage(post, "${createLink(controller: 'post', action: 'detail', id: post.id)}")
+            if(post.hasErrors() || !post.save(flush: true)) {
+                render("error!")
+            } else {
+                flash.message = 'success'
+                render("success")
+            }
+        }
+    }
+
+    //role admin
+    def pushGroup(long id) {
+        //TODO: get post by id, use facebookService post to group and save this id
+    }
+
+    def adminCreate() {
+        //TODO: create post by admin
+        //solution: user create(), and _createPost.gsp if(!request.xhr) {add css}
+    }
+
+    //role admin
+    def delete(long id) {
+        //TODO: delete post
     }
 }

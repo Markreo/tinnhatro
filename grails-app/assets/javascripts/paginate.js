@@ -27,13 +27,13 @@ var Datatable = function () {
             $(id + "_paginate").css("margin-top", "10px");
             $(id + "_paginate").css("float", "right");
 
-           /* $(input).keyup(
+            $(input).keyup(
                 $.debounce(function () {
                     ajaxParams['search'] = $(input).val();
                     table.draw();
                     return;
                 }, 1000)
-            );*/
+            );
         },
 
         setAjaxParam: function (name, value) {

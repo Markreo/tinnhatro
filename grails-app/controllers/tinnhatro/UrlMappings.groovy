@@ -12,5 +12,10 @@ class UrlMappings {
         "/"(controller: 'home', action: 'index')
         "500"(view:'/error')
         "404"(view:'/notFound')
+
+        "/chi-tiet/$id" {
+            controller = 'post'
+            action = 'detail'
+        }
     }
 }

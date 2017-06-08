@@ -23,7 +23,7 @@
             <div class="widget-buttons">
                 <span class="input-icon">
                     <input id="search-input" type="text" class="form-control input-xs" id="glyphicon-search" placeholder="Tìm kiếm">
-                    <i class="glyphicon glyphicon-search blue"></i>
+                    <i class="glyphicon glyphicon-search themeprimary"></i>
                 </span>
             </div>
         </div>
@@ -31,28 +31,30 @@
             %{--<qlnhatro:message/>--}%
             <div class="table-toolbar pull-right">
                 <div class="btn-group">
-                    <a href="${createLink(controller: 'user',action: 'edit')}" class="btn btn-azure" rel="bootbox"><i class="fa fa-plus"></i> Thêm</a>
+                    <a href="${createLink(controller: 'user',action: 'create')}" class="btn btn-azure" rel="bootbox"><i class="fa fa-plus"></i> Thêm</a>
                 </div>
             </div>
-            <table id="data-table-users" class="table table-hover table-striped table-bordered">
+            <table id="renters" class="table table-hover table-striped table-bordered">
                 <thead class="bordered-blueberry">
                 <tr>
                     <th>
                         #
                     </th>
                     <th>
-                        username
+                        Tên
                     </th>
                     <th>
-                        tên
+                        Username
                     </th>
                     <th>
-                        điện thoại
+                        Số điện thoại
                     </th>
                     <th>
-                        email
+                        Email
                     </th>
-                    <th width="15%"></th>
+                    <th>
+                        Actions
+                    </th>
                 </tr>
                 </thead>
                 <tbody>
@@ -63,12 +65,11 @@
     </div>
 </div>
 <script>
-    Datatable.init("#data-table-users", "${createLink(controller: 'admin', action: 'users')}", "#search-input");
+    Datatable.init("#renters", "${createLink(controller: 'admin', action: 'users')}", "#search-input");
     $(document).on('click', "a[rel='bootbox']", function (event) {
         console.log('botbox')
         event.preventDefault();
         var url = this.href;
-        console.log(url)
         $.post(url, function(html) {
             bootbox.dialog({
                 title: 'Khách thuê',
