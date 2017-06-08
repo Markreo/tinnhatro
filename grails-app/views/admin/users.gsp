@@ -31,29 +31,26 @@
             %{--<qlnhatro:message/>--}%
             <div class="table-toolbar pull-right">
                 <div class="btn-group">
-                    <a href="${createLink(controller: 'renter',action: 'create')}" class="btn btn-azure" rel="bootbox"><i class="fa fa-plus"></i> Thêm</a>
+                    <a href="${createLink(controller: 'user',action: 'edit')}" class="btn btn-azure" rel="bootbox"><i class="fa fa-plus"></i> Thêm</a>
                 </div>
             </div>
-            <table id="renters" class="table table-hover table-striped table-bordered">
+            <table id="data-table-users" class="table table-hover table-striped table-bordered">
                 <thead class="bordered-blueberry">
                 <tr>
                     <th>
                         #
                     </th>
                     <th>
-                        Ten
+                        username
                     </th>
                     <th>
-                        Ho va Ten Dem
+                        tên
                     </th>
                     <th>
-                        ngay sinh
+                        điện thoại
                     </th>
                     <th>
-                        gioi tinh
-                    </th>
-                    <th>
-                        Phong
+                        email
                     </th>
                     <th width="15%"></th>
                 </tr>
@@ -66,11 +63,12 @@
     </div>
 </div>
 <script>
-    Datatable.init("#renters", "${createLink(controller: 'renter', action: 'renters')}", "#search-input");
+    Datatable.init("#data-table-users", "${createLink(controller: 'admin', action: 'users')}", "#search-input");
     $(document).on('click', "a[rel='bootbox']", function (event) {
         console.log('botbox')
         event.preventDefault();
         var url = this.href;
+        console.log(url)
         $.post(url, function(html) {
             bootbox.dialog({
                 title: 'Khách thuê',

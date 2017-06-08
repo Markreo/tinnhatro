@@ -8,7 +8,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label>Tên liên hệ</label>
-                            <input type="text" class="form-control" name="name" autocomplete="off" />
+                            <input type="text" class="form-control" name="name" autocomplete="off" value="${user.name}"/>
                             <div class="horizontal-space"></div>
                         </div>
                     </div>
@@ -17,12 +17,12 @@
                     <div class="form-group">
                         <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
                                 <label>Số điện thoại</label>
-                                <input type="text" class="form-control" name="phone" autocomplete="off" />
+                                <input type="text" class="form-control" name="phone" autocomplete="off" value="${user.phone}"/>
                                 <div class="horizontal-space"></div>
                         </div>
                         <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
                                 <label>Email</label>
-                                <input type="email" class="form-control" name="email" autocomplete="off" />
+                                <input type="email" class="form-control" name="email" autocomplete="off" value="${user.email}"/>
                                 <div class="horizontal-space"></div>
                         </div>
                     </div>
@@ -31,7 +31,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label>Tên đăng nhập</label>
-                            <input type="text" class="form-control" name="username" autocomplete="off" />
+                            <input type="text" class="form-control" name="username" autocomplete="off" value="${user.username}"/>
                             <div class="horizontal-space"></div>
                         </div>
                     </div>

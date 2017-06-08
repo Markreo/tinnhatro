@@ -19,6 +19,12 @@ class UserController {
 
     }
 
+    @Secured('ROLE_SYSADMIN')
+    def edit(){
+        User user = params.id ? User.get(params.id as Long) : new User()
+        render view: 'register', model: [user: user]
+    }
+
     @Secured('permitAll')
     def saveRegitser() {
         println(params)

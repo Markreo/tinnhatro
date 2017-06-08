@@ -22,7 +22,8 @@
         <div class="widget-body">
             <div class="table-toolbar pull-right">
                 <div class="btn-group">
-                    <a href="${createLink(controller: 'post',action: 'create')}" class="btn btn-azure" rel="bootbox"><i class="fa fa-plus"></i> Thêm</a>
+                    <a href="${createLink(controller: 'post', action: 'create')}" class="submit-button" data-expand-width="col-8" data-transition-parent=".content-loader" data-external="true">Thêm</a>
+                    %{--<a href="${createLink(controller: 'post',action: 'create')}" class="btn btn-azure"><i class="fa fa-plus"></i> Thêm</a>--}%
                 </div>
             </div>
             <table id="data-table-posts" class="table table-hover table-striped table-bordered">
