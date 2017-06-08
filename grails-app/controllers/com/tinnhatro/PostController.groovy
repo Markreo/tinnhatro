@@ -117,6 +117,8 @@ class PostController {
     }
 
     def adminCreate() {
+        println "create"
+        render template: 'createPost'
         //TODO: create post by admin
         //solution: user create(), and _createPost.gsp if(!request.xhr) {add css}
     }

@@ -15,32 +15,8 @@ class AdminController {
         render view: 'posts'
     }
 
-    def user() {
-        println("here")
-        render view: 'users'
     def user(){
         render view: 'users'
-    }
-
-    def users() {
-        def users = User.createCriteria().list([max: params.int("length"), offset: params.int("start")]){}
-        def result = new JSONObject()
-        def aaData = new JSONArray()
-        users.eachWithIndex{ User u, int i ->
-            def arr = new JSONArray()
-            arr.put(i+ 1)
-            arr.put(u.username)
-            arr.put(u.name)
-            arr.put(u.phone)
-            arr.put(u.email)
-            arr.put("""<a href="${createLink(controller: 'user', action: 'edit', id: u.id)}" rel="bootbox"><i class="fa fa-edit"></i></a>""")
-            aaData.put(arr)
-        }
-        result.put("draw", params.int("draw"))
-        result.put("recordsTotal", users.totalCount)
-        result.put("recordsFiltered", users.totalCount)
-        result.put("data", aaData)
-        render result
     }
 
     def users() {
@@ -117,8 +93,4 @@ class AdminController {
         render result
     }
 
-
-    def create() {
-        //TODO: create admin user
-    }
 }

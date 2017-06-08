@@ -31,7 +31,7 @@
             %{--<qlnhatro:message/>--}%
             <div class="table-toolbar pull-right">
                 <div class="btn-group">
-                    <a href="${createLink(controller: 'user',action: 'create')}" class="btn btn-azure" rel="bootbox"><i class="fa fa-plus"></i> Thêm</a>
+                    <a href="${createLink(controller: 'user',action: 'edit')}" class="btn btn-azure" rel="bootbox"><i class="fa fa-plus"></i> Thêm</a>
                 </div>
             </div>
             <table id="renters" class="table table-hover table-striped table-bordered">
