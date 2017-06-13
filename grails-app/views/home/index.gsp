@@ -19,6 +19,10 @@
     <title>Tin nhà trọ</title>
     <asset:javascript  src="myjavascript.js" />
     <asset:javascript  src="bootbox.min.js" />
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDdCSr9vabayz2eiL6j5IrVdzmaz3uCY1Q&
+            sensor=false&amp;libraries=places">
+    </script>
     <script>
         var contextPath = '${request.contextPath}';
     </script>
@@ -250,7 +254,8 @@
 <asset:javascript src="jquery.color-2.1.2.min.js"/>
 <asset:javascript src="jquery.average-color.js"/>
 <asset:javascript src="masonry.pkgd.min.js"/>
-<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;libraries=places"></script>
+%{--<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;libraries=places"></script>--}%
+
 %{--<script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDdCSr9vabayz2eiL6j5IrVdzmaz3uCY1Q&callback=initMap">
 </script>--}%
@@ -280,6 +285,7 @@
     loadMarker({});
 
     function loadMarker( data) {
+        console.log("load marker")
         $.getJSON('${createLink(controller: 'home', action: 'getJsonFile')}', data)
             .done(function(json) {
                 createHomepageGoogleMap(_latitude,_longitude,json);

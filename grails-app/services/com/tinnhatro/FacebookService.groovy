@@ -1,5 +1,6 @@
 package com.tinnhatro
 
+import app.HttpsTrustManager
 import com.restfb.BinaryAttachment
 import com.restfb.Connection
 import com.restfb.DefaultFacebookClient
@@ -34,6 +35,7 @@ class FacebookService {
     }
 
     def postPhotoToGroup(Post post, String link = '') {
+        HttpsTrustManager.allowAllSSL()
         String tieni = ""
         post.tienich?.split(',')?.each {
             tieni = tieni + " \t- " + it + "\n"
@@ -49,6 +51,7 @@ class FacebookService {
     }
 
     def postPhotoToPage(Post post, String link = '') {
+        HttpsTrustManager.allowAllSSL()
         String tieni = ""
         post.tienich?.split(',')?.each {
             tieni = tieni + " \t- " + it + "\n"
@@ -67,6 +70,7 @@ class FacebookService {
 
 
     ArrayList<Comment> getComments(String id = '1576433009047575') {
+        HttpsTrustManager.allowAllSSL()
         try {
             FacebookClient fbClient = new DefaultFacebookClient(getPageToken(fanPageId, longAccessToken))
             com.restfb.types.Post post = fbClient.fetchObject(id, com.restfb.types.Post.class,
@@ -87,6 +91,7 @@ class FacebookService {
     }
 
     String getPageToken(String pageId, String token) {
+        HttpsTrustManager.allowAllSSL()
         RestBuilder rest = new RestBuilder()
         RestResponse resp = rest.get("https://graph.facebook.com/v2.9/${pageId}?fields=access_token&access_token=${token}")
         String page_token = new JsonSlurper().parseText(resp.json.toString()).access_token
@@ -95,6 +100,7 @@ class FacebookService {
     }
 
     def getUser(String id = '464966183844434') {
+        HttpsTrustManager.allowAllSSL()
         FacebookClient fbClient = new DefaultFacebookClient(longAccessToken)
         com.restfb.types.User user = fbClient.fetchObject(id, com.restfb.types.User.class,
                 Parameter.with("fields", "comments"))

@@ -98,6 +98,7 @@ class PostController {
     //role admin
     @Secured(["ROLE_SYSADMIN","ROLE_ADMIN"])
     def pushPage(long id){
+
         //TODO: get post by id, use facebookService post to fanpage and save this id
         def post = Post.get(id)
         if (post) {
@@ -112,10 +113,12 @@ class PostController {
     }
 
     //role admin
+    @Secured(["ROLE_SYSADMIN","ROLE_ADMIN"])
     def pushGroup(long id) {
         //TODO: get post by id, use facebookService post to group and save this id
     }
 
+    @Secured(["ROLE_SYSADMIN","ROLE_ADMIN"])
     def adminCreate() {
         println "create"
         render template: 'createPost'
@@ -124,6 +127,7 @@ class PostController {
     }
 
     //role admin
+    @Secured(["ROLE_SYSADMIN","ROLE_ADMIN"])
     def delete(long id) {
         //TODO: delete post
     }
