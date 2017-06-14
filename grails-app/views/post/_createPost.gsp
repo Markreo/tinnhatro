@@ -172,13 +172,13 @@
             simpleMap(_latitude, _longitude,draggableMarker,scrollwheel);
         }, 200);
 
-        $(window).keydown(function(event){
-            if(event.keyCode == 13) {
-                console.log(event.targetEl)
-                event.stopPropagation();
-                return false;
-            }
-        });
+//        $(window).keydown(function(event){
+//            if(event.keyCode == 13) {
+//                console.log(event.targetEl)
+//                event.stopPropagation();
+//                return false;
+//            }
+//        });
 
         $("#file-1").fileinput({
             uploadUrl: '#', // you must set a valid URL here else you will get an error
