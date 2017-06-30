@@ -44,11 +44,13 @@ class TntTagLib {
     }
 
     def facebook = { attrs, body->
-        def fbId = attrs.fbId
-        if(fbId) {
-            out << g.render(template: '/template/comments', model: [comments: facebookService.getComments(fbId)])
+        try {
+            def fbId = attrs.fbId
+            if (fbId) {
+                out << g.render(template: '/template/comments', model: [comments: facebookService.getComments(fbId)])
 
-        }
+            }
+        } catch (Exception ex) {}
     }
 
     def genFBUser= {attrs, body->

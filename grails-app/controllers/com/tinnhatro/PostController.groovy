@@ -29,9 +29,9 @@ class PostController {
             render([message: 'fail'] as JSON)
         } else {
             files.each { StandardMultipartHttpServletRequest.StandardMultipartFile file ->
-                File folder = new File(Holders.config.folder.tmp + "/${new Date().format('yyyy/MM/dd')}")
+                File folder = new File(Holders.config.folder.file + "/${new Date().format('yyyy/MM/dd')}")
                 folder.mkdirs()
-                File f = new File(Holders.config.folder.tmp + "/${new Date().format('yyyy/MM/dd')}/${System.currentTimeMillis()}_" + file.getOriginalFilename())
+                File f = new File(Holders.config.folder.file + "/${new Date().format('yyyy/MM/dd')}/${System.currentTimeMillis()}_" + file.getOriginalFilename())
                 file.transferTo(f)
                 post.addToImage(new Photo(path: f.path))
             }
@@ -59,6 +59,7 @@ class PostController {
     @Secured('permitAll')
     def detail(long id) {
         Post post = Post.get(id)
+        println(post.id)
         if(post) {
             render(template: 'detail', model: [post: post, isAjax: request.xhr])
         } else {

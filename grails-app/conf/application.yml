@@ -103,7 +103,8 @@ environments:
         server:
             port: 8080
         folder:
-            tmp: D:/Temp
+            tmp: /opt/tmp
+            clone: /opt/file
 #            item: D:\Project\tinnhatro\grails-app\assets\images\default-item.png
             item: /data/tinnhatro/grails-app/assets/images/default-item.png
         dataSource:
@@ -121,6 +122,7 @@ environments:
             port: 8002
         folder:
             tmp: /opt/giap/temp
+            file: /opt/giap/file
             item: /opt/giap/tnt/webapps/ROOT/grails-app/assets/images/default-item.png
         dataSource:
             dbCreate: update

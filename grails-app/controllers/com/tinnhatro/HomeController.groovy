@@ -1,6 +1,7 @@
 package com.tinnhatro
 
 import app.HttpsTrustManager
+import com.restfb.types.Post
 import grails.converters.JSON
 import grails.plugin.springsecurity.annotation.Secured
 import grails.plugins.rest.client.RestBuilder
@@ -44,7 +45,7 @@ class HomeController {
         println("parmas: " + params)
         def types = params.getList("type[]")
         def postData = []
-        def posts = Post.createCriteria().list() {
+        def posts = Post.createCriteria().list([sort:'dateCreated', order: 'desc']) {
             if(types) {
                 def loais = []
                 types.each {
@@ -53,13 +54,11 @@ class HomeController {
                 'in'('loai', loais)
             }
             if(params.min) {
-                println(params.getDouble("min")?.longValue())
-                println(params.getDouble("max")?.longValue())
                 between('gia', params.getDouble("min")?.longValue(), params.getDouble("max")?.longValue())
             }
         }
-        posts.each {
-            postData.add(it.toJSON())
+        posts.each { Post post ->
+            postData.add(post.toJSON())
         }
         render([data: postData] as JSON)
     }
@@ -89,7 +88,7 @@ class HomeController {
     def func() {
         int page = 1
         HttpsTrustManager.allowAllSSL()
-        while (page < 10) {
+        while (page < 5) {
             String url = "https://mystay.vn/motels/search/${page}?searching=&price=500000%2C50000000&checkin=03%2F06%2F2017&adults=1&child=0"
             render("process " + url + "</br>")
             Document document = Jsoup.connect(url).get();

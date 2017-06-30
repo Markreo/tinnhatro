@@ -4,7 +4,7 @@ import grails.converters.JSON
 import groovy.transform.ToString
 
 @ToString
-class Post {
+class xPost {
     //TODO: change and generator id to String -> .../chi-tiet/id-bai-post
     enum TrangThai{
         HIEULUC(0, "Hiển thị", "info"),
@@ -110,7 +110,7 @@ class Post {
                 gia: this.gia,
                 tienich: tienich?.split(','),
                 mota: this.mota.subSequence(0, this.mota.length() < 180 ? this.mota.length() : 180),
-                dieukhoan: this.dieukhoan.subSequence(0, this.dieukhoan.length() < 180 ? this.dieukhoan.length() : 180),
+                dieukhoan: this.dieukhoan?.subSequence(0, this.dieukhoan?.length() < 180 ? this.dieukhoan?.length() : 180),
                 dateCreated: this.dateCreated.format('dd/MM/yyyy HH:mm'),
                 lastUpdated: lastUpdated.format('dd/MM/yyyy: HH:mm')]
     }
