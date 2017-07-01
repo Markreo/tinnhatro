@@ -1,7 +1,6 @@
 package com.tinnhatro
 
 import app.HttpsTrustManager
-import com.restfb.types.Post
 import grails.converters.JSON
 import grails.plugin.springsecurity.annotation.Secured
 import grails.plugins.rest.client.RestBuilder

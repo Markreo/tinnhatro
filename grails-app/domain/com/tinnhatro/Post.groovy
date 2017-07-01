@@ -4,7 +4,7 @@ import grails.converters.JSON
 import groovy.transform.ToString
 
 @ToString
-class xPost {
+class Post {
     //TODO: change and generator id to String -> .../chi-tiet/id-bai-post
     enum TrangThai{
         HIEULUC(0, "Hiển thị", "info"),

@@ -73,9 +73,9 @@ class AdminController {
             //TODO: link to image
             arr.put(p.image*.id)
             arr.put(p.gia)
-            arr.put(p.mota)
-            arr.put(p.namxay)
-            arr.put(p.doituong)
+//            arr.put(p.mota)
+//            arr.put(p.namxay)
+//            arr.put(p.doituong)
             arr.put(p.rating)
             arr.put(p.fbPageId ? """<a href='https://facebook.com/${p.fbPageId}' target='_blank'><i class='fa fa-facebook-official'></i> Link</a>""" : """<a href="${createLink(controller: 'post', action: 'pushPage', id: p.id)}" class="btn btn-default btn-xs themesecondary"><i class="fa fa-share-alt"></i>Fanpage</a>""")
             arr.put(p.fbGroupId ? """<a href='https://facebook.com/${p.fbGroupId}' target='_blank'>${p.fbGroupId}</a>""" : """<a href="${createLink(controller: 'post', action: 'pushGroup', id: p.id)}" class="btn btn-default btn-xs themethirdcolor"><i class="fa fa-share-alt"></i>Group</a>""")

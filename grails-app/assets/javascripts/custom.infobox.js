@@ -47,7 +47,7 @@ function drawInfobox(infoboxContent, json, i){
             '</article>' +
             '<article class="animate move_from_top_short">' +
             '<h3 style="display: inline-block">Hết hạn: </h3>' +
-            '<span> 23/05/2017' +  json.data[i].dateCreated+ '</span>' +
+            '<span>' +  json.data[i].dateCreated+ '</span>' +
             '</article>' +
             tienichContent +
         '</div>' +
