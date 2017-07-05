@@ -1,7 +1,9 @@
 package com.tinnhatro.api
 
 import com.tinnhatro.RestfulController
+import com.tinnhatro.Role
 import com.tinnhatro.User
+import com.tinnhatro.UserRole
 import org.springframework.http.HttpStatus
 
 class ApiController extends RestfulController {
@@ -25,6 +27,11 @@ class ApiController extends RestfulController {
                     return sendResponse([message: user.errors.toString()], HttpStatus.UNAUTHORIZED)
                 } else {
                     println("saved")
+                    def roleCHOTHUE = Role.findOrCreateWhere(authority: 'ROLE_CHOTHUE')
+                    def userRole = UserRole.findOrCreateWhere(user: user, role: roleCHOTHUE)
+                    if(userRole.save(flush: true)) {
+                        println('saved role')
+                    }
                     return sendResponse([message: "success"], HttpStatus.OK)
                 }
             }

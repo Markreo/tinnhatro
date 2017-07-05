@@ -117,6 +117,16 @@ class PostController {
     @Secured(["ROLE_SYSADMIN","ROLE_ADMIN"])
     def pushGroup(long id) {
         //TODO: get post by id, use facebookService post to group and save this id
+        def post = Post.get(id)
+        if (post) {
+            post.fbPageId = facebookService.postPhotoToGroup(post, "${createLink(controller: 'post', action: 'detail', id: post.id, absolute: true)}")
+            if(post.hasErrors() || !post.save(flush: true)) {
+                render("error!")
+            } else {
+                flash.message = 'success'
+                render("success")
+            }
+        }
     }
 
     @Secured(["ROLE_SYSADMIN","ROLE_ADMIN"])
